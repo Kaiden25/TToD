@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by Kaiden on 28.10.2016.
  */
-public class Enemy {
+public class Enemy extends Character{
     public Types.Enemy Type;
     public Enemy EvolvesTo;
 
