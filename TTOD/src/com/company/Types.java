@@ -13,6 +13,6 @@ public class Types {
     }
 
     public enum Enemy {
-        Dragon, Human, Undead, Creature
+        Dragon, Humanoid, Goblinoid, Creature
     }
 }
