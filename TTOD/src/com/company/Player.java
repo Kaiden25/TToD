@@ -20,10 +20,10 @@ public class Player extends Character {
   }
 
   public static Player getOurInstance() {
-    return ourInstance;
-  }
+    if(ourInstance == null){
+      ourInstance = new Player();
+    }
 
-  public static void setOurInstance(Player ourInstance) {
-    Player.ourInstance = ourInstance;
+    return ourInstance;
   }
 }
