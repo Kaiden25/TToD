@@ -27,18 +27,23 @@ public class Trader {
     }
 
     public Types.TradeResult buyItem(Item item) {
-        if(Items.contains(item)){
-            float itemPrice = getItemBuyPrice(item);
-            if(Player.getOurInstance().GEIL > itemPrice) {
-                Player.getOurInstance().GEIL = Player.getOurInstance().GEIL - itemPrice;
-                Player.getOurInstance().Items.add(item);
-                return Types.TradeResult.Successful;
+        if(Player.getOurInstance().MaxItems != Player.getOurInstance().Items.size()){
+            if(Items.contains(item)){
+                float itemPrice = getItemBuyPrice(item);
+                if(Player.getOurInstance().GEIL > itemPrice) {
+                    Player.getOurInstance().GEIL = Player.getOurInstance().GEIL - itemPrice;
+                    Player.getOurInstance().Items.add(item);
+                    return Types.TradeResult.Successful;
+                }
+                else
+                    return Types.TradeResult.NotEnougthMoney;
             }
             else
-                return Types.TradeResult.NotEnougthMoney;
+                return Types.TradeResult.UnexistingItem;
         }
         else
-            return Types.TradeResult.UnexistingItem;
+            return Types.TradeResult.NotEnoughtSpace;
+
     }
 
     public float getItemSellPrice(Item item){
