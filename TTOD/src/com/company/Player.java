@@ -7,8 +7,10 @@ public class Player extends Character {
 
   public int TimesCleared;
 
+  ///Value Between 0-100
   public int Charisma;
 
+  ///Current Floor in Dungeon
   public int FloorCount;
 
   private static Player ourInstance = new Player();

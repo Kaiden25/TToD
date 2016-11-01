@@ -26,4 +26,8 @@ public class Combat {
     public boolean flee(){
         return true;
     }
+
+    public String getAttacked(){
+        return "";
+    }
 }

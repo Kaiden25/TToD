@@ -1,11 +1,14 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Michael on 28.10.2016.
  */
 public class Trader {
 
-    public Item[] Items;
+    public ArrayList<Item> Items;
 
     public Types.Trader Type;
 
@@ -20,21 +23,36 @@ public class Trader {
         GEIL = 0;
         Name = "John Doe";
         Charisma = 0;
+        Items = new ArrayList<Item>();
     }
 
     public Types.TradeResult buyItem(Item item) {
-        return Types.TradeResult.Unsuccessful;
+        if(Items.contains(item)){
+            float itemPrice = getItemBuyPrice(item);
+            if(Player.getOurInstance().GEIL > itemPrice) {
+                Player.getOurInstance().GEIL = Player.getOurInstance().GEIL - itemPrice;
+                Player.getOurInstance().Items.add(item);
+                return Types.TradeResult.Successful;
+            }
+            else
+                return Types.TradeResult.NotEnougthMoney;
+        }
+        else
+            return Types.TradeResult.UnexistingItem;
     }
 
     public float getItemSellPrice(Item item){
-        return 0;
+        return item.Value * (Player.getOurInstance().Charisma / Charisma);
     }
 
     public float getItemBuyPrice(Item item){
-        return 0;
+        return item.Value + item.Value * ((Charisma / 100) / Player.getOurInstance().Charisma);
     }
 
-    public float sellItem(Item item){
-        return 0;
+    public void sellItem(Item item){
+        float itemPrice = getItemSellPrice(item);
+        Player.getOurInstance().Items.remove(item);
+        Player.getOurInstance().GEIL = Player.getOurInstance().GEIL + itemPrice;
     }
+
 }

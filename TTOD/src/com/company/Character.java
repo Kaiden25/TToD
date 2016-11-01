@@ -1,5 +1,5 @@
 package com.company;
-
+import java.util.ArrayList;
 /**
  * Created by Kaiden on 28.10.2016.
  */
@@ -37,7 +37,7 @@ public class Character {
 
     public Item Weapon;
 
-    public Item[] Items;
+    public ArrayList<Item> Items;
 
     public Character() {
         Name = "";
@@ -56,6 +56,6 @@ public class Character {
         GEIL = 0;
         Armor = new Item();
         Weapon = new Item();
-        Items = new Item[0];
+        Items = new ArrayList<Item>();
     }
 }
