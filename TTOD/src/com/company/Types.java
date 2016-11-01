@@ -15,4 +15,8 @@ public class Types {
     public enum Enemy {
         Dragon, Humanoid, Goblinoid, Creature
     }
+
+    public enum CombatActionResult {
+        ItemUsed, ItemMissed, Attacked, AttackMissed, Defended, Escaped, Waited
+    }
 }
