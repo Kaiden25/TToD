@@ -19,4 +19,8 @@ public class Types {
     public enum CombatActionResult {
         ItemUsed, ItemMissed, Attacked, AttackMissed, Defended, Escaped, Waited
     }
+
+    public enum ItemType {
+        Armor, Sword, Potion, Scrap
+    }
 }

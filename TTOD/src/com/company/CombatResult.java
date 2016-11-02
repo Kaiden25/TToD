@@ -5,9 +5,9 @@ package com.company;
  */
 public class CombatResult {
 
-    public float PlayerLifeLoss;
+    public float PlayerLifeDifference;
 
-    public float EnemyLifeLoss;
+    public float EnemyLifeDifference;
 
     public Types.CombatActionResult PlayerAction;
 
@@ -17,4 +17,5 @@ public class CombatResult {
 
     public Item EnemyItemUsed;
 
+    public Boolean EnemyHadFirstHit;
 }

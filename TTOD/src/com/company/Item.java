@@ -6,11 +6,7 @@ package com.company;
 public class Item {
     public int MaxCount;
 
-    public enum ItemType {
-        Armor, Sword, Potion, Scrap
-    }
-
-    public ItemType Type;
+    public Types.ItemType Type;
 
     public float Value;
 
@@ -18,7 +14,7 @@ public class Item {
 
     public Item(){
         MaxCount = 0;
-        Type = ItemType.Scrap;
+        Type = Types.ItemType.Scrap;
         Value = 0;
         IsCombatItem = false;
     }
