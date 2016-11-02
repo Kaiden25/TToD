@@ -62,7 +62,7 @@ public class Character {
     public ArrayList<Item> Items;
 
     public Character() {
-        Name = "";
+        Name = "Darman";
         MaxLife = 1;
         Life = MaxLife;
         Defense = 1;
