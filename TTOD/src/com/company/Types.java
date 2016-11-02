@@ -17,7 +17,7 @@ public class Types {
     }
 
     public enum CombatActionResult {
-        ItemUsed, ItemMissed, Attacked, AttackMissed, Defended, Escaped, Waited
+        ItemUsed, ItemMissed, Attacked, AttackMissed, Defended, Escaped, Waited, Evolved
     }
 
     public enum ItemType {

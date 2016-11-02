@@ -18,4 +18,14 @@ public class CombatResult {
     public Item EnemyItemUsed;
 
     public Boolean EnemyHadFirstHit;
+
+    public  CombatResult(){
+        EnemyHadFirstHit = false;
+        PlayerItemUsed = null;
+        EnemyItemUsed = null;
+        EnemyAction = null;
+        PlayerAction = null;
+        PlayerLifeDifference = 0;
+        EnemyLifeDifference = 0;
+    }
 }
