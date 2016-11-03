@@ -21,17 +21,3 @@ public class Enemy extends Character{
         Type = type;
     }
 }
-
-/**
-legendary dragon
-
- goblin
-ork
-kobold
-dragon
-skeleton
-treant
-spiders
-shepard
-bandit
-*/
