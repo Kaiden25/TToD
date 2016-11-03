@@ -24,7 +24,8 @@ public class Enemy extends Character{
 
 /**
 legendary dragon
-goblin
+
+ goblin
 ork
 kobold
 dragon
