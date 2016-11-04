@@ -4,18 +4,34 @@ package com.company;
  * Created by Kaiden on 28.10.2016.
  */
 public class Item {
-    public int MaxCount;
+  public String Name;
 
-    public Types.ItemType Type;
+  public float Healing;
 
-    public float Value;
+  /** The Items Defense
+   * Value between 0-100*/
+  public float Defense;
 
-    public boolean IsCombatItem;
+  /** The Items Attack
+   * Value between 0-100*/
+  public float Attack;
 
-    public Item(){
-        MaxCount = 0;
-        Type = Types.ItemType.Scrap;
-        Value = 0;
-        IsCombatItem = false;
-    }
+  public int MaxCount;
+
+  public Types.ItemType Type;
+
+  public float Value;
+
+  public boolean IsCombatItem;
+
+  public Item(){
+    Name = "Scrap";
+    Healing = 0;
+    Defense = 0;
+    Attack = 0;
+    MaxCount = 0;
+    Type = Types.ItemType.Scrap;
+    Value = 0;
+    IsCombatItem = false;
+  }
 }
