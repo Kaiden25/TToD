@@ -6,22 +6,14 @@ import java.util.ArrayList;
  * Created by pstieger on 28.10.2016.
  */
 public class Town {
-    private ArrayList<Trader> traders = new ArrayList<Trader>();
-
-    public ArrayList<Trader> getTraders() {
-        return traders;
-    }
-
-    public void setTraders(ArrayList<Trader> traders) {
-        this.traders = traders;
-    }
+    public ArrayList<Trader> Traders = new ArrayList<Trader>();
 
     public void goSleeping(){
 
     }
 
     public Trader getTrader(Types.Trader traderType){
-        for(Trader t : traders){
+        for(Trader t : Traders){
             if(t.Type == traderType){
                 return t;
             }
