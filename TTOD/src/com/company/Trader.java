@@ -47,10 +47,10 @@ public class Trader {
                     return Types.TradeResult.Successful;
                 }
                 else
-                    return Types.TradeResult.NotEnoughtSpace;
+                    return Types.TradeResult.NotEnoughSpace;
             }
             else
-                return Types.TradeResult.NotEnougthMoney;
+                return Types.TradeResult.NotEnoughMoney;
         }
         else
             return Types.TradeResult.UnexistingItem;

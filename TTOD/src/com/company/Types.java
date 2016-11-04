@@ -9,7 +9,7 @@ public class Types {
     }
 
     public enum TradeResult {
-        Successful, UnexistingItem, NotEnougthMoney, NotEnoughtSpace
+        Successful, UnexistingItem, NotEnoughMoney, NotEnoughSpace
     }
 
     public enum Enemy {

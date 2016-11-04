@@ -11,7 +11,7 @@ public class EnemyController {
             case Creature:
                 enemyToDefine.Name = "Spider";
                 enemyToDefine.MaxLife = 175;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 20;
                 enemyToDefine.Attack = 20;
                 enemyToDefine.Inteligence = 10;
@@ -25,7 +25,7 @@ public class EnemyController {
             case Humanoid:
                 enemyToDefine.Name = "Bandit";
                 enemyToDefine.MaxLife = 100;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 20;
                 enemyToDefine.Attack = 20;
                 enemyToDefine.Inteligence = 10;
@@ -39,7 +39,7 @@ public class EnemyController {
             case Goblinoid:
                 enemyToDefine.Name = "Goblin";
                 enemyToDefine.MaxLife = 150;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 10;
                 enemyToDefine.Attack = 25;
                 enemyToDefine.Inteligence = 10;
@@ -53,7 +53,7 @@ public class EnemyController {
             case Shepard:
                 enemyToDefine.Name = "Shepard";
                 enemyToDefine.MaxLife = 1;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 200;
                 enemyToDefine.Attack = 200;
                 enemyToDefine.Inteligence = 10;
@@ -67,7 +67,7 @@ public class EnemyController {
             case Dragon:
                 enemyToDefine.Name = "Dragon";
                 enemyToDefine.MaxLife = 500;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 40;
                 enemyToDefine.Attack = 40;
                 enemyToDefine.Inteligence = 20;
@@ -82,7 +82,7 @@ public class EnemyController {
             case Undead:
                 enemyToDefine.Name = "Dracolich";
                 enemyToDefine.MaxLife = 800;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 50;
                 enemyToDefine.Attack = 50;
                 enemyToDefine.Inteligence = 30;
@@ -96,7 +96,7 @@ public class EnemyController {
             default:
                 enemyToDefine.Name = "Steve";
                 enemyToDefine.MaxLife = 1;
-                enemyToDefine.Life = MaxLife;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 1;
                 enemyToDefine.Attack = 1;
                 enemyToDefine.Inteligence = 1;
@@ -113,23 +113,19 @@ public class EnemyController {
 }
 
 /*
- * Dragon
- * dragon           7 & 8
- * legendary dragon 8
- *
- * Humanoid
- * skeleton         2
- * bandit           1
- *
- * Goblinoid
- * goblin
- * ork
- * kobold
- *
- * Creature
- * treant
- * spiders
- *
- * Shepard
- * shepard
- */
+Dragon
+dragon
+legendary dragon
+Humanoid
+skeleton
+bandit
+Goblinoid
+goblin
+ork
+kobold
+Creature
+treant
+spiders
+Shepard
+shepard
+*/
