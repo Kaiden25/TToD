@@ -13,7 +13,7 @@ public class Types {
     }
 
     public enum Enemy {
-        Dragon, Humanoid, Goblinoid, Creature, Shepard, Undead
+        Dragon, Humanoid, Goblinoid, Creature, Shepard, Undead, Lich
     }
 
     public enum CombatActionResult {

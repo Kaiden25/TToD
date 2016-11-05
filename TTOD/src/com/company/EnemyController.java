@@ -93,6 +93,20 @@ public class EnemyController {
                 enemyToDefine.MaxItems = 15;
                 enemyToDefine.GEIL = 1000;
                 break;
+            case Lich:
+                enemyToDefine.Name = "Goran the Lich";
+                enemyToDefine.MaxLife = 1000;
+                enemyToDefine.Life = enemyToDefine.MaxLife;
+                enemyToDefine.Defense = 60;
+                enemyToDefine.Attack = 60;
+                enemyToDefine.Inteligence = 50;
+                enemyToDefine.CritChance = 50;
+                enemyToDefine.BlockChance = 50;
+                enemyToDefine.Luck = 15;
+                enemyToDefine.Initiative = 40;
+                enemyToDefine.MaxItems = 20;
+                enemyToDefine.GEIL = 2000;
+                break;
             default:
                 enemyToDefine.Name = "Steve";
                 enemyToDefine.MaxLife = 1;
