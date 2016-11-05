@@ -1,4 +1,6 @@
 package com.company;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -237,17 +239,32 @@ public class Main {
             );
             switch (nextMove){
                 case 1:
-                    displayCombatResult(combat.attack());
+                    displayCombatResult(combat.attack(), combat.CurrentEnemy.Name);
                     break;
                 case 2:
-                    displayCombatResult(combat.defense());
+                    displayCombatResult(combat.defense(), combat.CurrentEnemy.Name);
                     break;
                 case 3:
-                    //Use Potion
+                    ArrayList<Item> playerPotions = new ArrayList<Item>();
+                    boolean potionWasChosen = false;
+                    for (Item potion : Player.getOurInstance().Items) {
+                        if(!potionWasChosen && potion.Type == Types.ItemType.Potion)
+                            if(!playerPotions.contains(potion)){
+                                playerPotions.add(potion);
+                                if(askQuestion("Do you wanna use the following potion: " + potion.Name)){
+                                    potionWasChosen = true;
+                                    displayCombatResult(combat.usePotion(potion), combat.CurrentEnemy.Name);
+                                }
+                            }
+                    }
+                    if(!potionWasChosen){
+                        writeline("You didn't choose a potion.");
+                        displayCombatResult(combat.getAttacked(), combat.CurrentEnemy.Name);
+                    }
                     break;
                 case 4:
                     CombatResult result = combat.flee();
-                    displayCombatResult(result);
+                    displayCombatResult(result, combat.CurrentEnemy.Name);
                     if(result.PlayerAction == Types.CombatActionResult.Escaped)
                         playerEscaped = true;
                     break;
@@ -265,9 +282,37 @@ public class Main {
         seperator();
     }
 
-    private static void displayCombatResult(CombatResult result){
-
+    private static void displayCombatResult(CombatResult result, String enemyName){
+        seperator();
+        writeline(new String[]{
+                (result.EnemyHadFirstHit ? enemyName + " had first hit" : Player.getOurInstance().Name + " had first hit"),
+                Player.getOurInstance().Name + ": "+ displayCombatActionResult(result.PlayerAction) + " | " + enemyName + ": " + displayCombatActionResult(result.EnemyAction)
+        });
+        seperator();
     }
 
-
+    private static String displayCombatActionResult(Types.CombatActionResult result){
+        if(result == null)
+            return "died in combat";
+        switch (result){
+            case Attacked:
+                return "attacked";
+            case AttackMissed:
+                return "missed with his attack";
+            case Defended:
+                return "went defense mode";
+            case Escaped:
+                return "escaped from the combat";
+            case Evolved:
+                return "evolved";
+            case ItemMissed:
+                return "tried to use an item, but missed";
+            case ItemUsed:
+                return "used an item";
+            case Waited:
+                return "didn't do anything";
+            default:
+                return "did an unknown move";
+        }
+    }
 }
