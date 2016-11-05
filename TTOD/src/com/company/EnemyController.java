@@ -56,10 +56,10 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 200;
                 enemyToDefine.Attack = 200;
-                enemyToDefine.Inteligence = 10;
+                enemyToDefine.Inteligence = 100;
                 enemyToDefine.CritChance = 100;
                 enemyToDefine.BlockChance = 50;
-                enemyToDefine.Luck = 10;
+                enemyToDefine.Luck = 100;
                 enemyToDefine.Initiative = 15;
                 enemyToDefine.MaxItems = 5;
                 enemyToDefine.GEIL = 33;
