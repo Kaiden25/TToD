@@ -17,8 +17,26 @@ public class Town {
         blacksmith.Name = "Wilfried the blacksmith";
         blacksmith.Charisma = 30;
         blacksmith.GEIL = 400;
-        //Add all Items to the Trader
+        blacksmith.Items.add(ItemController.getItem(Types.ItemType.Sword));
+        blacksmith.Items.add(ItemController.getItem(Types.ItemType.Scrap));
         Traders.add(blacksmith);
+
+        Trader armorsmith = new Trader();
+        armorsmith.Name = "Benny the armorsmith";
+        armorsmith.Charisma = 30;
+        armorsmith.GEIL = 400;
+        armorsmith.Items.add(ItemController.getItem(Types.ItemType.Armor));
+        armorsmith.Items.add(ItemController.getItem(Types.ItemType.Scrap));
+        Traders.add(armorsmith);
+
+        Trader generalmerchant = new Trader();
+        generalmerchant.Name = "Bob the general merchant";
+        generalmerchant.Charisma = 30;
+        generalmerchant.GEIL = 400;
+        generalmerchant.Items.add(ItemController.getItem(Types.ItemType.Potion));
+        generalmerchant.Items.add(ItemController.getItem(Types.ItemType.Scrap));
+        Traders.add(generalmerchant);
+
     }
 
     /** Rest, and fill up players life */
