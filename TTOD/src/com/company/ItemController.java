@@ -4,7 +4,7 @@ package com.company;
  * Created by Kaiden on 04.11.2016.
  */
 public class ItemController {
-  public Item getItem(Types.ItemType type) {
+  public static Item getItem(Types.ItemType type) {
     Item itemToDefine = new Item();
     switch (type) {
       case Armor:
@@ -29,7 +29,7 @@ public class ItemController {
         itemToDefine.IsCombatItem = true;
         break;
       case Scrap:
-        itemToDefine.Name = "Armor";
+        itemToDefine.Name = "Scrap";
         itemToDefine.MaxCount = 99;
         itemToDefine.Value = 5;
         itemToDefine.IsCombatItem = false;

@@ -50,8 +50,10 @@ public class Combat {
     }
 
     /** NEEDS TO BE IMPLEMENTED!!!!! */
-    public CombatResult useItem(Item item){
+    public CombatResult usePotion(Item item){
         CombatResult result = new CombatResult();
+        result.PlayerAction = Types.CombatActionResult.ItemUsed;
+        Player.getOurInstance().Life = Player.getOurInstance().Life + ItemController.getItem(Types.ItemType.Potion).Healing;
         return result;
     }
 
