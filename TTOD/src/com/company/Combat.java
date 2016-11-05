@@ -26,7 +26,7 @@ public class Combat {
         if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
             result.PlayerAction = Types.CombatActionResult.Attacked;
             //Calculates Damage
-            result.EnemyLifeDifference = Player.getOurInstance().Attack / CurrentEnemy.Defense * CurrentEnemy.MaxLife;
+            result.EnemyLifeDifference = Player.getOurInstance().Attack + ItemController.getItem(Types.ItemType.Sword).Attack / CurrentEnemy.Defense * CurrentEnemy.MaxLife;
             if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
                 result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
             if(result.EnemyLifeDifference > CurrentEnemy.Life)
@@ -128,7 +128,7 @@ public class Combat {
     private CombatResult enemyAttacks(CombatResult result){
         result.EnemyAction = Types.CombatActionResult.Attacked;
         //Calculates Damage
-        result.PlayerLifeDifference = CurrentEnemy.Attack / Player.getOurInstance().Defense * Player.getOurInstance().MaxLife;
+        result.PlayerLifeDifference = CurrentEnemy.Attack / Player.getOurInstance().Defense + ItemController.getItem(Types.ItemType.Armor).Defense * Player.getOurInstance().MaxLife;
         if(!result.EnemyHadFirstHit && result.PlayerAction == Types.CombatActionResult.Defended)
             result.PlayerLifeDifference = result.PlayerLifeDifference - Player.getOurInstance().Defense / 100 * result.PlayerLifeDifference;
         if(result.PlayerLifeDifference > Player.getOurInstance().Life)
