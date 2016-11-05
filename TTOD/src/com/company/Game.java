@@ -29,13 +29,13 @@ public class Game {
         Player.getOurInstance().FloorCount = 0;
         Player.getOurInstance().setMaxLife(1500);
         Player.getOurInstance().Attack = 60;
-        Player.getOurInstance().Luck = new Random().nextInt(-100);
-        Player.getOurInstance().Charisma = new Random().nextInt(-100);
+        Player.getOurInstance().Luck = new Random().nextInt(100);
+        Player.getOurInstance().Charisma = new Random().nextInt(100);
         Player.getOurInstance().TimesCleared = 0;
         Player.getOurInstance().BlockChance = 60;
         Player.getOurInstance().CritChance = 60;
         Player.getOurInstance().Defense = 60;
-        Player.getOurInstance().Initiative = new Random().nextInt(-100);
+        Player.getOurInstance().Initiative = new Random().nextInt(100);
         Player.getOurInstance().MaxItems = 20;
         Player.getOurInstance().GEIL = 0;
         Item cape = new Item();

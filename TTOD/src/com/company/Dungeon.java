@@ -122,7 +122,7 @@ public class Dungeon {
     /** Gets the next floor in which the player has to go */
     public Floor nextFloor(){
         if(Player.getOurInstance().FloorCount <= Floors.size())
-            return Floors.get(Player.getOurInstance().FloorCount - 1);
+            return Floors.get(Player.getOurInstance().FloorCount);
         else
             return Floors.get(Floors.size() -1);
     }

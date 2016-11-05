@@ -3,7 +3,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static Game CurrentGame;
+
     public static void main(String[] args) {
+        CurrentGame = new Game();
+        CurrentGame.startNewDefaultGame();
         seperator();
         writeline("Welcome to TTOD");
         seperator();
@@ -33,6 +37,7 @@ public class Main {
                 "And so, the hero traveled to Paladia",
                 "The adventure began..."
         });
+        goToTown();
     }
 
     private static void writeline(String[] textlines){
@@ -81,11 +86,11 @@ public class Main {
         boolean inputIsCorrect = false;
         while(!inputIsCorrect){
             char answer = getInput().toCharArray()[0];
-            if(answer == 'y'){
+            if(answer == 'y' || answer == 'Y'){
                 inputIsCorrect = true;
                 returnValue = true;
             }
-            else if(answer == 'n'){
+            else if(answer == 'n' || answer == 'N'){
                 inputIsCorrect = true;
                 returnValue = false;
             }
@@ -95,4 +100,174 @@ public class Main {
         }
         return returnValue;
     }
+
+    private static int askQuestion(String question, String answer1, String answer2, String answer3, String answer4){
+        int returnValue = 0;
+        writeline(question);
+        writeline("1) " + answer1);
+        writeline("2) " + answer2);
+        writeline("3) " + answer3);
+        writeline("4) " + answer4);
+        boolean inputIsCorrect = false;
+        while(!inputIsCorrect){
+            char answer = getInput().toCharArray()[0];
+            if(answer == '1'){
+                inputIsCorrect = true;
+                returnValue = 1;
+            }
+            else if(answer == '2'){
+                inputIsCorrect = true;
+                returnValue = 2;
+            }
+            else if(answer == '3'){
+                inputIsCorrect = true;
+                returnValue = 3;
+            }
+            else if(answer == '4'){
+                inputIsCorrect = true;
+                returnValue = 4;
+            }
+            else {
+                writeline("Please answer with 1, 2, 3 or 4");
+            }
+        }
+        return returnValue;
+    }
+
+    private static int askQuestion(String question, String answer1, String answer2){
+        int returnValue = 0;
+        writeline(question);
+        writeline("1) " + answer1);
+        writeline("2) " + answer2);
+        boolean inputIsCorrect = false;
+        while(!inputIsCorrect){
+            char answer = getInput().toCharArray()[0];
+            if(answer == '1'){
+                inputIsCorrect = true;
+                returnValue = 1;
+            }
+            else if(answer == '2'){
+                inputIsCorrect = true;
+                returnValue = 2;
+            }
+            else {
+                writeline("Please answer with 1 or 2");
+            }
+        }
+        return returnValue;
+    }
+
+    private static void goToTown(){
+        seperator();
+        writeline(Player.getOurInstance().Name + " entered Paladia");
+        seperator();
+        int nextAction = askQuestion(
+                "What do you wanna do?",
+                "Go to Sleep",
+                "Trade",
+                "Manage your Inventory",
+                "Enter the Tower of DOOM");
+        switch(nextAction){
+            case 1:
+                CurrentGame.Town.goSleeping();
+                seperator();
+                writeline("Life completely recovered!");
+                goToTown();
+                break;
+            case 2:
+                //Not Implemented yet
+                break;
+            case 3:
+                //Not Implemented yet
+                break;
+            case 4:
+                enterDungeon();
+                break;
+        }
+    }
+
+    private static void enterDungeon(){
+        seperator();
+        Floor currentFloor = CurrentGame.Dungeon.nextFloor();
+        boolean playerEscaped = false;
+        writeline(new String[]{
+                Player.getOurInstance().Name + " entered the dungeon",
+                "on floor number " + currentFloor.FloorNumber
+        });
+        seperator();
+        while (!playerEscaped && currentFloor.SealIsActivated == true){
+            if(currentFloor.FinishedBattles < 4)
+                writeline("There are " + (5 - currentFloor.FinishedBattles) + " enemies left till you reach the floor boss.");
+            else if (currentFloor.FinishedBattles == 4)
+                writeline("There is one more enemy left till you reach the floor boss.");
+            else
+                writeline("The floor boss is in front of you.");
+            seperator();
+            if(askQuestion("Do you wanna keep on going forward?")){
+                doCombat(currentFloor.nextCombat());
+            }
+            else {
+                if(currentFloor.canLeave()){
+                    writeline("You were able to escape from the dungeon");
+                    playerEscaped = true;
+                }
+                else{
+                    writeline("You couldn't escape!");
+                    doCombat(currentFloor.nextCombat());
+                }
+            }
+        }
+        goToTown();
+    }
+
+    private static void doCombat(Combat combat){
+        seperator();
+        writeline(combat.CurrentEnemy.Name + " wants to fight you!");
+        boolean playerEscaped = false;
+        while (!playerEscaped && combat.CurrentEnemy.Life != 0 && Player.getOurInstance().Life != 0){
+            seperator();
+            writeline(Player.getOurInstance().Name + " Life: " + Player.getOurInstance().Life + "/" + Player.getOurInstance().MaxLife + " | " + combat.CurrentEnemy.Name + " Life: " + combat.CurrentEnemy.Life + "/" + combat.CurrentEnemy.MaxLife);
+            seperator();
+            int nextMove = askQuestion(
+                    "What do you wanna do?",
+                    "Attack",
+                    "Defend",
+                    "Use a potion",
+                    "Flee"
+            );
+            switch (nextMove){
+                case 1:
+                    displayCombatResult(combat.attack());
+                    break;
+                case 2:
+                    displayCombatResult(combat.defense());
+                    break;
+                case 3:
+                    //Use Potion
+                    break;
+                case 4:
+                    CombatResult result = combat.flee();
+                    displayCombatResult(result);
+                    if(result.PlayerAction == Types.CombatActionResult.Escaped)
+                        playerEscaped = true;
+                    break;
+            }
+        }
+        if(Player.getOurInstance().Life <= 0){
+            writeline(new String[]{
+                    "You died",
+                    "GAME OVER",
+                    "Enter anything to exit"
+            });
+            getInput();
+            System.exit(0);
+        }
+        seperator();
+    }
+
+    private static void displayCombatResult(CombatResult result){
+
+    }
+
+
 }
