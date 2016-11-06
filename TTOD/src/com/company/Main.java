@@ -53,7 +53,7 @@ public class Main {
     }
 
     private static void seperator(){
-        System.out.println("[]------------------------------------------------------------------[]");
+        System.out.println("[]---------------------------------------------------------------------[]");
     }
 
     private static void namePlayer(){
@@ -160,9 +160,7 @@ public class Main {
     }
 
     private static void goToTown(){
-        seperator();
         writeline(Player.getOurInstance().Name + " entered Paladia");
-        seperator();
         int nextAction = askQuestion(
                 "What do you wanna do?",
                 "Go to Sleep",
@@ -172,7 +170,6 @@ public class Main {
         switch(nextAction){
             case 1:
                 CurrentGame.Town.goSleeping();
-                seperator();
                 writeline("Life completely recovered!");
                 goToTown();
                 break;
@@ -189,14 +186,12 @@ public class Main {
     }
 
     private static void enterDungeon(){
-        seperator();
         Floor currentFloor = CurrentGame.Dungeon.nextFloor();
         boolean playerEscaped = false;
         writeline(new String[]{
                 Player.getOurInstance().Name + " entered the dungeon",
                 "on floor number " + currentFloor.FloorNumber
         });
-        seperator();
         while (!playerEscaped && currentFloor.SealIsActivated == true){
             if(currentFloor.FinishedBattles < 4)
                 writeline("There are " + (5 - currentFloor.FinishedBattles) + " enemies left till you reach the floor boss.");
@@ -204,7 +199,6 @@ public class Main {
                 writeline("There is one more enemy left till you reach the floor boss.");
             else
                 writeline("The floor boss is in front of you.");
-            seperator();
             if(askQuestion("Do you wanna keep on going forward?")){
                 doCombat(currentFloor.nextCombat());
             }
@@ -223,13 +217,10 @@ public class Main {
     }
 
     private static void doCombat(Combat combat){
-        seperator();
         writeline(combat.CurrentEnemy.Name + " wants to fight you!");
         boolean playerEscaped = false;
         while (!playerEscaped && combat.CurrentEnemy.Life >= 0 && Player.getOurInstance().Life >= 0){
-            seperator();
             writeline(Player.getOurInstance().Name + " Life: " + Player.getOurInstance().Life + "/" + Player.getOurInstance().MaxLife + " | " + combat.CurrentEnemy.Name + " Life: " + combat.CurrentEnemy.Life + "/" + combat.CurrentEnemy.MaxLife);
-            seperator();
             int nextMove = askQuestion(
                     "What do you wanna do?",
                     "Attack",
@@ -279,16 +270,13 @@ public class Main {
             getInput();
             System.exit(0);
         }
-        seperator();
     }
 
     private static void displayCombatResult(CombatResult result, String enemyName){
-        seperator();
         writeline(new String[]{
                 (result.EnemyHadFirstHit ? enemyName + " had first hit" : Player.getOurInstance().Name + " had first hit"),
                 Player.getOurInstance().Name + ": "+ displayCombatActionResult(result.PlayerAction) + " | " + enemyName + ": " + displayCombatActionResult(result.EnemyAction)
         });
-        seperator();
     }
 
     private static String displayCombatActionResult(Types.CombatActionResult result){

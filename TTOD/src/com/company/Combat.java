@@ -40,7 +40,6 @@ public class Combat {
                 CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
             }
             result.PlayerAction = Types.CombatActionResult.Attacked;
-            return result;
         }
         //Enemy Attacks 2nd if still alive
         if(!result.EnemyHadFirstHit && CurrentEnemy.Life > 0)
