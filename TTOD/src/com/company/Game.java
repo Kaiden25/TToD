@@ -55,4 +55,16 @@ public class Game {
         Player.getOurInstance().addItem(stick);
         Player.getOurInstance().setWeapon(stick);
     }
+
+    public void initializeGodModePlayer(){
+        Player.getOurInstance().setMaxLife(10000);
+        Player.getOurInstance().Attack = 300;
+        Player.getOurInstance().Luck = 100;
+        Player.getOurInstance().Charisma = 100;
+        Player.getOurInstance().BlockChance = 300;
+        Player.getOurInstance().CritChance = 300;
+        Player.getOurInstance().Defense = 300;
+        Player.getOurInstance().Initiative = 300;
+        Player.getOurInstance().MaxItems = 200;
+    }
 }

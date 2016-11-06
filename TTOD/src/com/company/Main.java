@@ -74,9 +74,15 @@ public class Main {
     }
 
     private static String getInput(){
-        System.out.print("  ");
-        Scanner in = new Scanner(System.in);
-        String returnValue = in.nextLine();
+        boolean gettingInput = true;
+        String returnValue = "";
+        while(gettingInput){
+            System.out.print("  ");
+            Scanner in = new Scanner(System.in);
+            returnValue = in.nextLine();
+            if(!doCheat(returnValue))
+                gettingInput = false;
+        }
         if(returnValue != null)
             return returnValue;
         else
@@ -262,13 +268,14 @@ public class Main {
                 }
             }
         }
-        if(Player.getOurInstance().FloorCount == 9){
+        if(Player.getOurInstance().FloorCount == 8){
             writeline(new String[]{
                     "Thank you for saving Paladia, you are a true hero!",
                     "We shall remember your name forever, and ever!",
                     Player.getOurInstance().Name + " the mighty hero!!!"
             });
             seperator();
+            getInput();
             rollCredits();
         }
         writeline("You went back to Paladia");
@@ -550,5 +557,50 @@ public class Main {
         seperator();
         writeline("You went back");
         goToTown();
+    }
+
+    private static boolean doCheat(String cheatcode){
+        boolean wasCheat = false;
+        if(cheatcode != null){
+            if(cheatcode.equals("cn")) {
+                namePlayer();
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+            if(cheatcode.equals("heal")) {
+                Player.getOurInstance().Life = Player.getOurInstance().MaxLife;
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+            if(cheatcode.equals("tgm")) {
+                CurrentGame.initializeGodModePlayer();
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+            if(cheatcode.equals("motherload")) {
+                Player.getOurInstance().GEIL += 10000;
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+            if(cheatcode.equals("exit")) {
+                wasCheat = true;
+                System.exit(0);
+            }
+            if(cheatcode.equals("credits")) {
+                wasCheat = true;
+                rollCredits();
+            }
+            if(cheatcode.equals("skip1")) {
+                Player.getOurInstance().FloorCount++;
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+            if(cheatcode.equals("skipend")) {
+                Player.getOurInstance().FloorCount = 7;
+                writeline("Cheat activated");
+                wasCheat = true;
+            }
+        }
+        return wasCheat;
     }
 }
