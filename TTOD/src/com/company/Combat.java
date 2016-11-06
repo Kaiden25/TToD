@@ -18,35 +18,33 @@ public class Combat {
     /** Attack Enemy */
     public CombatResult attack(){
         CombatResult result = new CombatResult();
-        if (!(CurrentEnemy.Life > 0)){
-            result.EnemyHadFirstHit = enemyHasFirstHit();
 
-            //Enemy Attacks first
-            if(result.EnemyHadFirstHit)
-                result = enemyMove(result);
+        result.EnemyHadFirstHit = enemyHasFirstHit();
 
-            //Player attacks if still alive
-            if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
-                result.PlayerAction = Types.CombatActionResult.Attacked;
-                //Calculates Damage
-                result.EnemyLifeDifference = CurrentEnemy.Defense - (Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack);
-                if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
-                    result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
-                //Deals Damage to enemy
-                if (result.EnemyLifeDifference <= 0)
-                    CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
-                else if (result.EnemyLifeDifference > 0){
-                    result.EnemyLifeDifference = 0;
-                    CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
-                }
-                result.PlayerAction = Types.CombatActionResult.Attacked;
-                return result;
+        //Enemy Attacks first
+        if(result.EnemyHadFirstHit)
+            result = enemyMove(result);
+
+        //Player attacks if still alive
+        if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
+            result.PlayerAction = Types.CombatActionResult.Attacked;
+            //Calculates Damage
+            result.EnemyLifeDifference = CurrentEnemy.Defense - (Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack);
+            if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
+                result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
+            //Deals Damage to enemy
+            if (result.EnemyLifeDifference <= 0)
+                CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
+            else if (result.EnemyLifeDifference > 0){
+                result.EnemyLifeDifference = 0;
+                CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
             }
-            //Enemy Attacks 2nd if still alive
-            if(!result.EnemyHadFirstHit && CurrentEnemy.Life > 0)
-                result = enemyMove(result);
+            result.PlayerAction = Types.CombatActionResult.Attacked;
             return result;
         }
+        //Enemy Attacks 2nd if still alive
+        if(!result.EnemyHadFirstHit && CurrentEnemy.Life > 0)
+            result = enemyMove(result);
         return result;
     }
 
