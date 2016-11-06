@@ -103,8 +103,7 @@ public class Combat {
     private CombatResult enemyMove(CombatResult result){
         //Calculates Enemy Move
         if(CurrentEnemy.Life > 0){
-            if (result.EnemyHadFirstHit)
-            {
+            if (result.EnemyHadFirstHit){
                 if(CurrentEnemy.Life > (CurrentEnemy.MaxLife * 0.25)){
                     if(new Random().nextBoolean() || new Random().nextBoolean())
                         result = enemyAttacks(result);
@@ -118,11 +117,13 @@ public class Combat {
                 else
                     result.EnemyAction = Types.CombatActionResult.Escaped;
             }
-            else if(new Random().nextBoolean() || new Random().nextBoolean()|| new Random().nextBoolean() || new Random().nextBoolean() || new Random().nextBoolean())
+            else if(new Random().nextBoolean() || new Random().nextBoolean()|| new Random().nextBoolean() || new Random().nextBoolean() || new Random().nextBoolean()) {
+                result.EnemyAction = Types.CombatActionResult.Attacked;
                 result = enemyAttacks(result);
+            }
             else
                 result.EnemyAction = Types.CombatActionResult.Escaped;
-
+            return result;
         }
         else if (CurrentEnemy.EvolvesTo != null){
             //Enemy Evolves
@@ -145,6 +146,7 @@ public class Combat {
             result.PlayerLifeDifference = 0;
             Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
         }
+        result.EnemyAction = Types.CombatActionResult.Attacked;
         return result;
     }
 }
