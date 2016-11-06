@@ -14,7 +14,7 @@ public class ItemController {
         itemToDefine.Value = 175;
         itemToDefine.IsCombatItem = true;
         break;
-      case Sword:
+      case Weapon:
         itemToDefine.Name = "Warblade";
         itemToDefine.Attack = 15;
         itemToDefine.MaxCount = 1;
@@ -22,7 +22,7 @@ public class ItemController {
         itemToDefine.IsCombatItem = true;
         break;
       case Potion:
-        itemToDefine.Name = "Healt Potion";
+        itemToDefine.Name = "Health Potion";
         itemToDefine.Healing = 15;
         itemToDefine.MaxCount = 3;
         itemToDefine.Value = 175;

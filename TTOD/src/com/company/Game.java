@@ -48,7 +48,7 @@ public class Game {
         Player.getOurInstance().setArmor(cape);
         Item stick = new Item();
         stick.Name = "Fancy stick of fancyness";
-        stick.Type = Types.ItemType.Sword;
+        stick.Type = Types.ItemType.Weapon;
         stick.Attack = 20;
         stick.Value = 50;
         stick.MaxCount = 1;

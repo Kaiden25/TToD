@@ -21,6 +21,6 @@ public class Types {
     }
 
     public enum ItemType {
-        Armor, Sword, Potion, Scrap
+        Armor, Weapon, Potion, Scrap
     }
 }

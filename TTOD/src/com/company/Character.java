@@ -119,7 +119,7 @@ public class Character {
     /** Savely sets the Weapon of the Character
      * returns false if adding wasn't possible */
     public boolean setWeapon(Item item){
-        if (item.Type == Types.ItemType.Sword && Items.contains(item)){
+        if (item.Type == Types.ItemType.Weapon && Items.contains(item)){
             Armor = item;
             return true;
         }

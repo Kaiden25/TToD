@@ -1,5 +1,8 @@
 package com.company;
 
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
+
+import javax.lang.model.type.NullType;
 import java.util.Random;
 
 /**
@@ -26,15 +29,19 @@ public class Combat {
         if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
             result.PlayerAction = Types.CombatActionResult.Attacked;
             //Calculates Damage
-            result.EnemyLifeDifference = Player.getOurInstance().Attack + ItemController.getItem(Types.ItemType.Sword).Attack / CurrentEnemy.Defense * CurrentEnemy.MaxLife;
+            result.EnemyLifeDifference = CurrentEnemy.Defense - Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack;
             if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
                 result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
-            if(result.EnemyLifeDifference > CurrentEnemy.Life)
-                result.EnemyLifeDifference = CurrentEnemy.Life;
-            result.EnemyLifeDifference = 0 - result.EnemyLifeDifference;
             //Deals Damage to enemy
-            CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
+            if (result.EnemyLifeDifference <= 0)
+                CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
+            else {
+                result.EnemyLifeDifference = 0;
+                CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
+            }
+            return result;
         }
+
 
         //Enemy Attacks 2nd if still alive
         if(!result.EnemyHadFirstHit && CurrentEnemy.Life > 0)
@@ -53,7 +60,7 @@ public class Combat {
     public CombatResult usePotion(Item item){
         CombatResult result = new CombatResult();
         result.PlayerAction = Types.CombatActionResult.ItemUsed;
-        Player.getOurInstance().Life = Player.getOurInstance().Life + ItemController.getItem(Types.ItemType.Potion).Healing;
+        Player.getOurInstance().Life = Player.getOurInstance().Life ;
         return result;
     }
 
@@ -128,14 +135,16 @@ public class Combat {
     private CombatResult enemyAttacks(CombatResult result){
         result.EnemyAction = Types.CombatActionResult.Attacked;
         //Calculates Damage
-        result.PlayerLifeDifference = CurrentEnemy.Attack / Player.getOurInstance().Defense + ItemController.getItem(Types.ItemType.Armor).Defense * Player.getOurInstance().MaxLife;
+        result.PlayerLifeDifference = CurrentEnemy.Attack - (Player.getOurInstance().Defense + Player.getOurInstance().Armor.Defense);
         if(!result.EnemyHadFirstHit && result.PlayerAction == Types.CombatActionResult.Defended)
-            result.PlayerLifeDifference = result.PlayerLifeDifference - Player.getOurInstance().Defense / 100 * result.PlayerLifeDifference;
-        if(result.PlayerLifeDifference > Player.getOurInstance().Life)
-            result.PlayerLifeDifference = Player.getOurInstance().Life;
-        result.PlayerLifeDifference = 0 - result.PlayerLifeDifference;
+            result.PlayerLifeDifference = result.PlayerLifeDifference - (Player.getOurInstance().Defense + Player.getOurInstance().Armor.Defense)/ 100 * result.PlayerLifeDifference;
         //Deals Damage to enemy
-        Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
+        if (result.PlayerLifeDifference <= 0)
+            Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
+        else {
+            result.PlayerLifeDifference = 0;
+            Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
+        }
         return result;
     }
 }

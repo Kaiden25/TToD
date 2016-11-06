@@ -17,7 +17,7 @@ public class Town {
         blacksmith.Name = "Wilfried the blacksmith";
         blacksmith.Charisma = 30;
         blacksmith.GEIL = 400;
-        blacksmith.Items.add(ItemController.getItem(Types.ItemType.Sword));
+        blacksmith.Items.add(ItemController.getItem(Types.ItemType.Weapon));
         blacksmith.Items.add(ItemController.getItem(Types.ItemType.Scrap));
         Traders.add(blacksmith);
 
