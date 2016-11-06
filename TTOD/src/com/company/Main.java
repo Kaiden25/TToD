@@ -74,7 +74,7 @@ public class Main {
     private static String getInput(){
         System.out.print("  ");
         Scanner in = new Scanner(System.in);
-        String returnValue = in.next();
+        String returnValue = in.nextLine();
         if(returnValue != null)
             return returnValue;
         else
@@ -226,7 +226,7 @@ public class Main {
         seperator();
         writeline(combat.CurrentEnemy.Name + " wants to fight you!");
         boolean playerEscaped = false;
-        while (!playerEscaped && combat.CurrentEnemy.Life != 0 && Player.getOurInstance().Life != 0){
+        while (!playerEscaped && combat.CurrentEnemy.Life >= 0 && Player.getOurInstance().Life >= 0){
             seperator();
             writeline(Player.getOurInstance().Name + " Life: " + Player.getOurInstance().Life + "/" + Player.getOurInstance().MaxLife + " | " + combat.CurrentEnemy.Name + " Life: " + combat.CurrentEnemy.Life + "/" + combat.CurrentEnemy.MaxLife);
             seperator();
@@ -292,8 +292,9 @@ public class Main {
     }
 
     private static String displayCombatActionResult(Types.CombatActionResult result){
-        if(result == null)
+        if(result == null) {
             return "died in combat";
+        }
         switch (result){
             case Attacked:
                 return "attacked";
