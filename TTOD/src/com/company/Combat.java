@@ -5,6 +5,8 @@ import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 import javax.lang.model.type.NullType;
 import java.util.Random;
 
+import static com.company.Types.ItemType.Weapon;
+
 /**
  * Created by Michael on 28.10.2016.
  */
@@ -29,7 +31,7 @@ public class Combat {
         if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
             result.PlayerAction = Types.CombatActionResult.Attacked;
             //Calculates Damage
-            result.EnemyLifeDifference = CurrentEnemy.Defense - Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack;
+            result.EnemyLifeDifference = CurrentEnemy.Defense - Player.getOurInstance().Attack + ItemController.getItem(Weapon).Attack;
             if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
                 result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
             //Deals Damage to enemy
@@ -59,7 +61,8 @@ public class Combat {
     /** NEEDS TO BE IMPLEMENTED!!!!! */
     public CombatResult usePotion(Item item){
         CombatResult result = new CombatResult();
-        result.PlayerAction = Types.CombatActionResult.ItemUsed;
+        if(item.Type == Types.ItemType.Potion)
+            result.PlayerAction = Types.CombatActionResult.ItemUsed;
         Player.getOurInstance().Life = Player.getOurInstance().Life ;
         return result;
     }
