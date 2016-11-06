@@ -42,23 +42,31 @@ public class Combat {
         //Enemy Attacks 2nd if still alive
         if(!result.EnemyHadFirstHit && CurrentEnemy.Life > 0)
             result = enemyMove(result);
-        return result;
+        return endRound(result);
     }
 
     /** Defend against Enemy */
     public CombatResult defense() {
         CombatResult result = new CombatResult();
         result.PlayerAction = Types.CombatActionResult.Defended;
-        return enemyMove(result);
+        return endRound(enemyMove(result));
     }
 
     /** Use Potion to heal yourself */
     public CombatResult usePotion(Item item){
         CombatResult result = new CombatResult();
-        if(item.Type == Types.ItemType.Potion)
+        if(item.Type == Types.ItemType.Potion){
             result.PlayerAction = Types.CombatActionResult.ItemUsed;
-        Player.getOurInstance().Life = Player.getOurInstance().Life ;
-        return result;
+            if(item.Healing > 0)
+                Player.getOurInstance().Life = Player.getOurInstance().Life + item.Healing;
+            if(item.Attack > 0){
+                CurrentEnemy.Life = CurrentEnemy.Life - item.Attack;
+                result.EnemyLifeDifference = item.Attack;
+            }
+        }
+        if(CurrentEnemy.Life > 0)
+            result = enemyMove(result);
+        return endRound(result);
     }
 
     /** Escape from Combat */
@@ -70,14 +78,14 @@ public class Combat {
             result = enemyMove(result);
         else
             result.EnemyAction = Types.CombatActionResult.Waited;
-        return result;
+        return endRound(result);
     }
 
     /** Wait a round and let Enemy perform a move */
     public CombatResult getAttacked(){
         CombatResult result = new CombatResult();
         result.PlayerAction = Types.CombatActionResult.Waited;
-        return enemyMove(result);
+        return endRound(enemyMove(result));
     }
 
     /** Calculates the first to attack
@@ -146,6 +154,17 @@ public class Combat {
             Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
         }
         result.EnemyAction = Types.CombatActionResult.Attacked;
+        return result;
+    }
+
+    private CombatResult endRound(CombatResult result){
+        if(CurrentEnemy.Life > 0) {
+            if(CurrentEnemy.Items.size() > 0)
+                for (Item item: CurrentEnemy.Items) {
+                    Player.getOurInstance().Items.add(item);
+                }
+            Player.getOurInstance().GEIL = Player.getOurInstance().GEIL + CurrentEnemy.GEIL;
+        }
         return result;
     }
 }

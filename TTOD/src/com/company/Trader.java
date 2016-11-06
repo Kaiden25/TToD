@@ -58,12 +58,12 @@ public class Trader {
 
     /** Get the Price of an Item when selling*/
     public float getItemSellPrice(Item item){
-        return item.Value * (Player.getOurInstance().Charisma / Charisma);
+        return item.Value - (Charisma / 100 * item.Value);
     }
 
     /** Get the Price of an Item when buying */
     public float getItemBuyPrice(Item item){
-        return item.Value + item.Value * ((Charisma / 100) / Player.getOurInstance().Charisma);
+        return item.Value + item.Value * (Charisma / 100);
     }
 
     /** Sell an Item to the Trader */

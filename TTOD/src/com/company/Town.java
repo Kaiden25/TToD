@@ -15,7 +15,7 @@ public class Town {
     public void generateDefaultTraders(){
         Trader blacksmith = new Trader();
         blacksmith.Name = "Wilfried the blacksmith";
-        blacksmith.Charisma = 30;
+        blacksmith.Charisma = 10;
         blacksmith.GEIL = 400;
         blacksmith.Items.add(ItemController.getItem(Types.ItemType.Weapon));
         blacksmith.Items.add(ItemController.getItem(Types.ItemType.Scrap));
@@ -23,7 +23,7 @@ public class Town {
 
         Trader armorsmith = new Trader();
         armorsmith.Name = "Benny the armorsmith";
-        armorsmith.Charisma = 30;
+        armorsmith.Charisma = 50;
         armorsmith.GEIL = 400;
         armorsmith.Items.add(ItemController.getItem(Types.ItemType.Armor));
         armorsmith.Items.add(ItemController.getItem(Types.ItemType.Scrap));
@@ -31,7 +31,7 @@ public class Town {
 
         Trader generalmerchant = new Trader();
         generalmerchant.Name = "Bob the general merchant";
-        generalmerchant.Charisma = 30;
+        generalmerchant.Charisma = 70;
         generalmerchant.GEIL = 400;
         generalmerchant.Items.add(ItemController.getItem(Types.ItemType.Potion));
         generalmerchant.Items.add(ItemController.getItem(Types.ItemType.Scrap));

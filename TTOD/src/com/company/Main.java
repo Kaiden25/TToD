@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         CurrentGame = new Game();
         CurrentGame.startNewDefaultGame();
-        Player.getOurInstance().GEIL = 10000;
         seperator();
         writeline("Welcome to TTOD");
         seperator();
@@ -143,7 +142,8 @@ public class Main {
                     writeline("Please answer with 1, 2, 3 or 4");
                 }
             }
-            writeline("Please give an input before pressing enter");
+            else
+                writeline("Please give an input before pressing enter");
         }
         return returnValue;
     }
@@ -177,8 +177,10 @@ public class Main {
                 "Enter the Tower of DOOM");
         switch(nextAction){
             case 1:
+                seperator();
                 CurrentGame.Town.goSleeping();
                 writeline("Life completely recovered!");
+                seperator();
                 goToTown();
                 break;
             case 2:
@@ -433,9 +435,21 @@ public class Main {
                             seperator();
                             writeline("Which number?");
                             Item itemToBuy = currentTrader.Items.get(getNumber(currentTrader.Items.size()) - 1);
-                            currentTrader.buyItem(itemToBuy);
                             seperator();
-                            writeline("You bought: " + itemToBuy.Name);
+                            switch(currentTrader.buyItem(itemToBuy)){
+                                case Successful:
+                                    writeline("You bought: " + itemToBuy.Name);
+                                    break;
+                                case NotEnoughSpace:
+                                    writeline("It seems like you don't have enough space in your inventory");
+                                    break;
+                                case NotEnoughMoney:
+                                    writeline("You don't have enough money");
+                                    break;
+                                default:
+                                    writeline("It seems like you don't have enough space in your inventory");
+                                    break;
+                            }
                         }
                         seperator();
                         break;
