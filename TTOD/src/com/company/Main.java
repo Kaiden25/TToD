@@ -90,18 +90,23 @@ public class Main {
         writeline("Y|N");
         boolean inputIsCorrect = false;
         while(!inputIsCorrect){
-            char answer = getInput().toCharArray()[0];
-            if(answer == 'y' || answer == 'Y'){
-                inputIsCorrect = true;
-                returnValue = true;
+            String input = getInput();
+            if(input.length() != 0){
+                char answer = input.toCharArray()[0];
+                if(answer == 'y' || answer == 'Y'){
+                    inputIsCorrect = true;
+                    returnValue = true;
+                }
+                else if(answer == 'n' || answer == 'N'){
+                    inputIsCorrect = true;
+                    returnValue = false;
+                }
+                else {
+                    writeline("Please answer with Y or N");
+                }
             }
-            else if(answer == 'n' || answer == 'N'){
-                inputIsCorrect = true;
-                returnValue = false;
-            }
-            else {
-                writeline("Please answer with Y or N");
-            }
+            else
+                writeline("Please don't just press enter");
         }
         return returnValue;
     }
@@ -115,49 +120,30 @@ public class Main {
         writeline("4) " + answer4);
         boolean inputIsCorrect = false;
         while(!inputIsCorrect){
-            char answer = getInput().toCharArray()[0];
-            if(answer == '1'){
-                inputIsCorrect = true;
-                returnValue = 1;
+            String input = getInput();
+            if(input.length() != 0){
+                char answer = input.toCharArray()[0];
+                if(answer == '1'){
+                    inputIsCorrect = true;
+                    returnValue = 1;
+                }
+                else if(answer == '2'){
+                    inputIsCorrect = true;
+                    returnValue = 2;
+                }
+                else if(answer == '3'){
+                    inputIsCorrect = true;
+                    returnValue = 3;
+                }
+                else if(answer == '4'){
+                    inputIsCorrect = true;
+                    returnValue = 4;
+                }
+                else {
+                    writeline("Please answer with 1, 2, 3 or 4");
+                }
             }
-            else if(answer == '2'){
-                inputIsCorrect = true;
-                returnValue = 2;
-            }
-            else if(answer == '3'){
-                inputIsCorrect = true;
-                returnValue = 3;
-            }
-            else if(answer == '4'){
-                inputIsCorrect = true;
-                returnValue = 4;
-            }
-            else {
-                writeline("Please answer with 1, 2, 3 or 4");
-            }
-        }
-        return returnValue;
-    }
-
-    private static int askQuestion(String question, String answer1, String answer2){
-        int returnValue = 0;
-        writeline(question);
-        writeline("1) " + answer1);
-        writeline("2) " + answer2);
-        boolean inputIsCorrect = false;
-        while(!inputIsCorrect){
-            char answer = getInput().toCharArray()[0];
-            if(answer == '1'){
-                inputIsCorrect = true;
-                returnValue = 1;
-            }
-            else if(answer == '2'){
-                inputIsCorrect = true;
-                returnValue = 2;
-            }
-            else {
-                writeline("Please answer with 1 or 2");
-            }
+            writeline("Please give an input before pressing enter");
         }
         return returnValue;
     }
@@ -187,7 +173,7 @@ public class Main {
                 "What do you wanna do?",
                 "Go to Sleep",
                 "Trade",
-                "Manage your Inventory (Not implemented!)",
+                "Change equipment",
                 "Enter the Tower of DOOM");
         switch(nextAction){
             case 1:
@@ -200,7 +186,41 @@ public class Main {
                 doTrading();
                 break;
             case 3:
-                //Not Implemented yet
+                ArrayList<Item> weapons = new ArrayList<Item>();
+                ArrayList<Item> armor = new ArrayList<Item>();
+                if(Player.getOurInstance().Items.size() > 0) {
+                    for (Item item: Player.getOurInstance().Items) {
+                        switch (item.Type){
+                            case Weapon:
+                                weapons.add(item);
+                                break;
+                            case Armor:
+                                armor.add(item);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    seperator();
+                    if(armor.size() > 0) {
+                        Item newArmor = (armor.size() > 1 ? armor.get(new Random().nextInt(armor.size() - 1)) : armor.get(0));
+                        Player.getOurInstance().setArmor(newArmor);
+                        writeline("Your new armor is: " + newArmor.Name);
+                    }
+                    else
+                        writeline("You don't have any armor in your inventory!");
+                    if(weapons.size() > 0) {
+                        Item newWeapon = (weapons.size() > 1 ? weapons.get(new Random().nextInt(weapons.size()) - 1) : weapons.get(0));
+                        Player.getOurInstance().setWeapon(newWeapon);
+                        writeline("Your new armor is: " + newWeapon.Name);
+                    }
+                    else
+                        writeline("You don't have any weapons in your inventory!");
+                }
+                else
+                    writeline("You don't have any items!");
+                seperator();
+                goToTown();
                 break;
             case 4:
                 seperator();
@@ -385,7 +405,7 @@ public class Main {
         if(askQuestion("Do you wanna trade with a random trader?")){
             seperator();
             boolean tradeIsActive = true;
-            Trader currentTrader = CurrentGame.Town.Traders.get(new Random().nextInt(CurrentGame.Town.Traders.size())-1);
+            Trader currentTrader = CurrentGame.Town.Traders.get(new Random().nextInt(CurrentGame.Town.Traders.size() -1));
             writeline("Hello, my name is " + currentTrader.Name + ", nice to meet you.");
             seperator();
             while(tradeIsActive){
@@ -395,7 +415,7 @@ public class Main {
                         "What do you wanna do?",
                         "Buy something",
                         "Sell something",
-                        "Talk with trader",
+                        "Talk to trader",
                         "Go back to town"
                 );
                 seperator();
@@ -453,7 +473,6 @@ public class Main {
                                 break;
                             case 3:
                                 writeline(new String[]{
-                                        "Did you know:",
                                         "Goran the 'Lich' was one of the builders of this city.",
                                         "But one day he touched a dark stone and got evil.",
                                         "We don't exactly know what happened afterwards..."
