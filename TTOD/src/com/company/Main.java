@@ -1,6 +1,7 @@
 package com.company;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         CurrentGame = new Game();
         CurrentGame.startNewDefaultGame();
+        Player.getOurInstance().GEIL = 10000;
         seperator();
         writeline("Welcome to TTOD");
         seperator();
@@ -160,6 +162,24 @@ public class Main {
         return returnValue;
     }
 
+    private static int getNumber(int maxCount){
+        boolean inputIsCorrect = false;
+        int result = 0;
+        while(!inputIsCorrect) {
+            try{
+                result = Integer.parseInt(getInput());
+                if(result != 0 && result <= maxCount)
+                    inputIsCorrect = true;
+                else
+                    writeline("Enter a number between 1 and " + maxCount + "!");
+            }
+            catch (Exception ex){
+                writeline("Please enter a number!");
+            }
+        }
+        return result;
+    }
+
     private static void goToTown(){
         writeline(Player.getOurInstance().Name + " entered Paladia");
         seperator();
@@ -167,7 +187,7 @@ public class Main {
                 "What do you wanna do?",
                 "Go to Sleep",
                 "Trade",
-                "Manage your Inventory",
+                "Manage your Inventory (Not implemented!)",
                 "Enter the Tower of DOOM");
         switch(nextAction){
             case 1:
@@ -176,7 +196,8 @@ public class Main {
                 goToTown();
                 break;
             case 2:
-                //Not Implemented yet
+                seperator();
+                doTrading();
                 break;
             case 3:
                 //Not Implemented yet
@@ -218,6 +239,15 @@ public class Main {
                     doCombat(currentFloor.nextCombat());
                 }
             }
+        }
+        if(Player.getOurInstance().FloorCount == 9){
+            writeline(new String[]{
+                    "Thank you for saving Paladia, you are a true hero!",
+                    "We shall remember your name forever, and ever!",
+                    Player.getOurInstance().Name + " the mighty hero!!!"
+            });
+            seperator();
+            rollCredits();
         }
         writeline("You went back to Paladia");
         seperator();
@@ -321,5 +351,171 @@ public class Main {
             default:
                 return "did an unknown move";
         }
+    }
+
+    private static void rollCredits(){
+        writeline(new String[]{
+                "Thank you for playing our game!",
+                "We hope you had FUN :)"
+        });
+        seperator();
+        writeline("Best wishes from the developers:");
+        seperator();
+        writeline(new String[]{
+                "Michael van der Heide, Lead developer, Documentation & Idea",
+                "Enrico Chatelin, Development, Documentation, Idea & Testing",
+                "Paolo Stieger, Testing & Documentation"
+        });
+        seperator();
+        writeline("Also a huge thank you to our beta testers:");
+        seperator();
+        writeline(new String[]{
+                "Here could your name be"
+        });
+        seperator();
+        writeline("This Project was developed for educational purposes at the Technical vocational school Zurich (TBZ).");
+        writeline("http://www.tbz.ch/");
+        seperator();
+        writeline("Press enter to exit...");
+        getInput();
+        System.exit(0);
+    }
+
+    private static void doTrading(){
+        if(askQuestion("Do you wanna trade with a random trader?")){
+            seperator();
+            boolean tradeIsActive = true;
+            Trader currentTrader = CurrentGame.Town.Traders.get(new Random().nextInt(CurrentGame.Town.Traders.size())-1);
+            writeline("Hello, my name is " + currentTrader.Name + ", nice to meet you.");
+            seperator();
+            while(tradeIsActive){
+                writeline(Player.getOurInstance().Name + "'s GEIL: " + Player.getOurInstance().GEIL + " | " + currentTrader.Name + "'s GEIL:" + currentTrader.GEIL);
+                seperator();
+                int nextMove = askQuestion(
+                        "What do you wanna do?",
+                        "Buy something",
+                        "Sell something",
+                        "Talk with trader",
+                        "Go back to town"
+                );
+                seperator();
+                switch (nextMove){
+                    case 1:
+                        writeline("I have the following items:");
+                        seperator();
+                        int i = 1;
+                        for (Item item:currentTrader.Items) {
+                            writeline(i + ") " + item.Name + " : " + currentTrader.getItemBuyPrice(item) + " GEIL");
+                            i++;
+                        }
+                        seperator();
+                        if(askQuestion("Do you wanna buy an item?")){
+                            seperator();
+                            writeline("Which number?");
+                            Item itemToBuy = currentTrader.Items.get(getNumber(currentTrader.Items.size()) - 1);
+                            currentTrader.buyItem(itemToBuy);
+                            seperator();
+                            writeline("You bought: " + itemToBuy.Name);
+                        }
+                        seperator();
+                        break;
+                    case 2:
+                        if(Player.getOurInstance().Items.size() != 0){
+                            writeline("You have the following items:");
+                            seperator();
+                            int ii = 1;
+                            for (Item item:Player.getOurInstance().Items) {
+                                writeline(ii + ") " + item.Name + " : " + currentTrader.getItemSellPrice(item) + " GEIL");
+                                ii++;
+                            }
+                            seperator();
+                            if(askQuestion("Do you wanna sell an item?")){
+                                seperator();
+                                writeline("Which number?");
+                                Item itemToBuy = Player.getOurInstance().Items.get(getNumber(Player.getOurInstance().Items.size()) - 1);
+                                currentTrader.sellItem(itemToBuy);
+                                seperator();
+                                writeline("You sold: " + itemToBuy.Name + " for " + currentTrader.getItemSellPrice(itemToBuy) + " GEIL");
+                            }
+                        }
+                        else
+                            writeline("You don't have any items to sell.");
+                        seperator();
+                        break;
+                    case 3:
+                        int talkInt = new Random().nextInt(13);
+                        switch (talkInt){
+                            case 1:
+                                writeline("I used to be a hero like you, but then i took a tower to the knee.");
+                                break;
+                            case 2:
+                                writeline("GEIL is the currency in this kingdom");
+                                break;
+                            case 3:
+                                writeline(new String[]{
+                                        "Did you know:",
+                                        "Goran the 'Lich' was one of the builders of this city.",
+                                        "But one day he touched a dark stone and got evil.",
+                                        "We don't exactly know what happened afterwards..."
+                                });
+                                break;
+                            case 4:
+                                writeline("One does not simply walk into the tower");
+                                break;
+                            case 5:
+                                writeline("'Crash the goblin king' hates it, when people kill his wife 'Lucine'");
+                                break;
+                            case 6:
+                                writeline("'The undead dragon of DOOM' wasn't allowed to take part in a particular FPS.");
+                                break;
+                            case 7:
+                                writeline(new String[]{
+                                        "Don't even try, you'll never be as cool as",
+                                        "'Greethim the gatekeeper unidragon'!"
+                                });
+                                break;
+                            case 8:
+                                writeline(new String[]{
+                                        "When 'Arthur the forgotten King' was drunk, he always",
+                                        "told us some stupid fairytails about a legendary sword",
+                                        "which he found in a stone, or something.",
+                                        "He was really desperate for attention."
+                                });
+                                break;
+                            case 9:
+                                writeline(new String[]{
+                                        "'The mighty unicorn Goldfish' is actually just a",
+                                        " goldfish with an ice cream cone on his head"
+                                });
+                                break;
+                            case 10:
+                                writeline(new String[]{
+                                        "Legends say, that 'Ingrid the shadow priestess' always",
+                                        "fell from the kids horse when she tried to ride it."
+                                });
+                                break;
+                            case 11:
+                                writeline("Don't you dare to kill a chicken in our city!");
+                                break;
+                            case 12:
+                                writeline( "Well, that whole thing with this tower definitely escalated quickly");
+                                break;
+                            default:
+                                writeline("Hey i'm a villager, talk to me and i'll give you some advice.");
+                                break;
+                        }
+                        seperator();
+                        break;
+                    case 4:
+                    default:
+                        writeline("Okay, than have a nice day");
+                        tradeIsActive = false;
+                        break;
+                }
+            }
+        }
+        seperator();
+        writeline("You went back");
+        goToTown();
     }
 }
