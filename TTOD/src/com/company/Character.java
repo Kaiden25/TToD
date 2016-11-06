@@ -120,7 +120,7 @@ public class Character {
      * returns false if adding wasn't possible */
     public boolean setWeapon(Item item){
         if (item.Type == Types.ItemType.Weapon && Items.contains(item)){
-            Armor = item;
+            Weapon = item;
             return true;
         }
         else

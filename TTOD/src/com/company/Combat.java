@@ -1,8 +1,5 @@
 package com.company;
 
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
-
-import javax.lang.model.type.NullType;
 import java.util.Random;
 
 import static com.company.Types.ItemType.Weapon;
@@ -31,16 +28,17 @@ public class Combat {
         if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
             result.PlayerAction = Types.CombatActionResult.Attacked;
             //Calculates Damage
-            result.EnemyLifeDifference = CurrentEnemy.Defense - Player.getOurInstance().Attack + ItemController.getItem(Weapon).Attack;
+            result.EnemyLifeDifference = CurrentEnemy.Defense - (Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack);
             if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
                 result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
             //Deals Damage to enemy
             if (result.EnemyLifeDifference <= 0)
                 CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
-            else {
+            else if (result.EnemyLifeDifference > 0){
                 result.EnemyLifeDifference = 0;
                 CurrentEnemy.Life = CurrentEnemy.Life + result.EnemyLifeDifference;
             }
+
             return result;
         }
 
@@ -58,7 +56,7 @@ public class Combat {
         return enemyMove(result);
     }
 
-    /** NEEDS TO BE IMPLEMENTED!!!!! */
+    /** Use Potion to heal yourself */
     public CombatResult usePotion(Item item){
         CombatResult result = new CombatResult();
         if(item.Type == Types.ItemType.Potion)
