@@ -14,7 +14,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 20;
                 enemyToDefine.Attack = 20;
-                enemyToDefine.Inteligence = 10;
+                enemyToDefine.Intelligence = 10;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 10;
@@ -28,7 +28,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 20;
                 enemyToDefine.Attack = 20;
-                enemyToDefine.Inteligence = 10;
+                enemyToDefine.Intelligence = 10;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 10;
@@ -42,7 +42,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 10;
                 enemyToDefine.Attack = 25;
-                enemyToDefine.Inteligence = 10;
+                enemyToDefine.Intelligence = 10;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 10;
@@ -56,7 +56,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 200;
                 enemyToDefine.Attack = 200;
-                enemyToDefine.Inteligence = 100;
+                enemyToDefine.Intelligence = 100;
                 enemyToDefine.CritChance = 100;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 100;
@@ -70,7 +70,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 40;
                 enemyToDefine.Attack = 40;
-                enemyToDefine.Inteligence = 20;
+                enemyToDefine.Intelligence = 20;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 20;
@@ -85,7 +85,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 50;
                 enemyToDefine.Attack = 50;
-                enemyToDefine.Inteligence = 30;
+                enemyToDefine.Intelligence = 30;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 10;
@@ -99,7 +99,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 60;
                 enemyToDefine.Attack = 60;
-                enemyToDefine.Inteligence = 50;
+                enemyToDefine.Intelligence = 50;
                 enemyToDefine.CritChance = 50;
                 enemyToDefine.BlockChance = 50;
                 enemyToDefine.Luck = 15;
@@ -113,7 +113,7 @@ public class EnemyController {
                 enemyToDefine.Life = enemyToDefine.MaxLife;
                 enemyToDefine.Defense = 1;
                 enemyToDefine.Attack = 1;
-                enemyToDefine.Inteligence = 1;
+                enemyToDefine.Intelligence = 1;
                 enemyToDefine.CritChance = 1;
                 enemyToDefine.BlockChance = 1;
                 enemyToDefine.Luck = 1;

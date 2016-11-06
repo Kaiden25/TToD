@@ -43,6 +43,7 @@ public class Floor {
             return new Combat(PossibleEnemies.get(new Random().nextInt((PossibleEnemies.size()))).cloneEnemy());
         else{
             SealIsActivated = false;
+            Player.getOurInstance().FloorCount++;
             return new Combat(Boss);
         }
     }

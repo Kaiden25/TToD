@@ -36,7 +36,7 @@ public class Enemy extends Character{
         returnValue.GEIL = this.GEIL;
         returnValue.Initiative = this.Initiative;
         returnValue.Items = this.Items;
-        returnValue.Inteligence = this.Inteligence;
+        returnValue.Intelligence = this.Intelligence;
         returnValue.Luck = this.Luck;
         returnValue.MaxItems = this.MaxItems;
         returnValue.MaxLife = this.MaxLife;

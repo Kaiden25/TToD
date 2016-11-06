@@ -23,9 +23,9 @@ public class Character {
      * Value between 1-100*/
     public float Attack;
 
-    /** The Character Inteligence
+    /** The Character Intelligence
      * Value between 1-100*/
-    public float Inteligence;
+    public float Intelligence;
 
     /** The Character Critical Hit Chance
      * Value between 1-100*/
@@ -67,7 +67,7 @@ public class Character {
         Life = MaxLife;
         Defense = 1;
         Attack = 1;
-        Inteligence = 1;
+        Intelligence = 1;
         CritChance = 1;
         BlockChance = 1;
         Luck = 1;

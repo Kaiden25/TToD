@@ -39,6 +39,7 @@ public class Main {
                 "And so, the hero traveled to Paladia",
                 "The adventure began..."
         });
+        seperator();
         goToTown();
     }
 
@@ -161,6 +162,7 @@ public class Main {
 
     private static void goToTown(){
         writeline(Player.getOurInstance().Name + " entered Paladia");
+        seperator();
         int nextAction = askQuestion(
                 "What do you wanna do?",
                 "Go to Sleep",
@@ -180,6 +182,7 @@ public class Main {
                 //Not Implemented yet
                 break;
             case 4:
+                seperator();
                 enterDungeon();
                 break;
         }
@@ -188,10 +191,8 @@ public class Main {
     private static void enterDungeon(){
         Floor currentFloor = CurrentGame.Dungeon.nextFloor();
         boolean playerEscaped = false;
-        writeline(new String[]{
-                Player.getOurInstance().Name + " entered the dungeon",
-                "on floor number " + currentFloor.FloorNumber
-        });
+        writeline(Player.getOurInstance().Name + " entered the dungeon on floor number " + currentFloor.FloorNumber);
+        seperator();
         while (!playerEscaped && currentFloor.SealIsActivated == true){
             if(currentFloor.FinishedBattles < 4)
                 writeline("There are " + (5 - currentFloor.FinishedBattles) + " enemies left till you reach the floor boss.");
@@ -200,19 +201,26 @@ public class Main {
             else
                 writeline("The floor boss is in front of you.");
             if(askQuestion("Do you wanna keep on going forward?")){
+                seperator();
                 doCombat(currentFloor.nextCombat());
             }
             else {
                 if(currentFloor.canLeave()){
+                    seperator();
                     writeline("You were able to escape from the dungeon");
                     playerEscaped = true;
+                    seperator();
                 }
                 else{
+                    seperator();
                     writeline("You couldn't escape!");
+                    seperator();
                     doCombat(currentFloor.nextCombat());
                 }
             }
         }
+        writeline("You went back to Paladia");
+        seperator();
         goToTown();
     }
 
@@ -221,6 +229,7 @@ public class Main {
         boolean playerEscaped = false;
         while (!playerEscaped && combat.CurrentEnemy.Life >= 0 && Player.getOurInstance().Life >= 0){
             writeline(Player.getOurInstance().Name + " Life: " + Player.getOurInstance().Life + "/" + Player.getOurInstance().MaxLife + " | " + combat.CurrentEnemy.Name + " Life: " + combat.CurrentEnemy.Life + "/" + combat.CurrentEnemy.MaxLife);
+            seperator();
             int nextMove = askQuestion(
                     "What do you wanna do?",
                     "Attack",
@@ -228,12 +237,15 @@ public class Main {
                     "Use a potion",
                     "Flee"
             );
+            seperator();
             switch (nextMove){
                 case 1:
                     displayCombatResult(combat.attack(), combat.CurrentEnemy.Name);
+                    seperator();
                     break;
                 case 2:
                     displayCombatResult(combat.defense(), combat.CurrentEnemy.Name);
+                    seperator();
                     break;
                 case 3:
                     ArrayList<Item> playerPotions = new ArrayList<Item>();
@@ -249,15 +261,21 @@ public class Main {
                             }
                     }
                     if(!potionWasChosen){
-                        writeline("You didn't choose a potion.");
+                        if(playerPotions.size() == 0)
+                            writeline("You don't own any potions");
+                        else
+                            writeline("You didn't choose a potion.");
                         displayCombatResult(combat.getAttacked(), combat.CurrentEnemy.Name);
                     }
+                    seperator();
                     break;
                 case 4:
                     CombatResult result = combat.flee();
                     displayCombatResult(result, combat.CurrentEnemy.Name);
+                    seperator();
                     if(result.PlayerAction == Types.CombatActionResult.Escaped)
                         playerEscaped = true;
+
                     break;
             }
         }
@@ -289,7 +307,7 @@ public class Main {
             case AttackMissed:
                 return "missed with his attack";
             case Defended:
-                return "went defense mode";
+                return "went defence mode";
             case Escaped:
                 return "escaped from the combat";
             case Evolved:

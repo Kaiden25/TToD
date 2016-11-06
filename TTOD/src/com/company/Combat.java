@@ -2,8 +2,6 @@ package com.company;
 
 import java.util.Random;
 
-import static com.company.Types.ItemType.Weapon;
-
 /**
  * Created by Michael on 28.10.2016.
  */
@@ -70,6 +68,8 @@ public class Combat {
         result.PlayerAction = Types.CombatActionResult.Escaped;
         if(result.EnemyHadFirstHit == true)
             result = enemyMove(result);
+        else
+            result.EnemyAction = Types.CombatActionResult.Waited;
         return result;
     }
 
@@ -86,7 +86,7 @@ public class Combat {
         int playerChance = 0;
         if(CurrentEnemy.Initiative < Player.getOurInstance().Initiative)
             playerChance = playerChance + 2;
-        if(CurrentEnemy.Inteligence < Player.getOurInstance().Inteligence)
+        if(CurrentEnemy.Intelligence < Player.getOurInstance().Intelligence)
             playerChance++;
         if(CurrentEnemy.Luck < Player.getOurInstance().Luck){
             playerChance++;
