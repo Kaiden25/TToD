@@ -40,7 +40,7 @@ public class Floor {
     public Combat nextCombat(){
         FinishedBattles++;
         if(FinishedBattles <= 5)
-            return new Combat(PossibleEnemies.get(new Random().nextInt((PossibleEnemies.size()))));
+            return new Combat(PossibleEnemies.get(new Random().nextInt((PossibleEnemies.size()))).cloneEnemy());
         else{
             SealIsActivated = false;
             return new Combat(Boss);

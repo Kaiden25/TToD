@@ -26,7 +26,7 @@ public class Dungeon {
                     floor.PossibleEnemies.add(enemyController.getEnemy(Types.Enemy.Creature));
                     floor.Boss = enemyController.getEnemy(Types.Enemy.Humanoid);
                     floor.Boss.Name = "Ingrid the shadow priestess";
-                    floor.Boss.Life = floor.Boss.Life * 2;
+                    floor.Boss.setMaxLife(floor.Boss.Life * 2);
                     floor.Boss.Attack = (float)(floor.Boss.Attack * 1.5);
                     Floors.add(floor);
                     break;
@@ -37,7 +37,7 @@ public class Dungeon {
                     floor.PossibleEnemies.add(enemyController.getEnemy(Types.Enemy.Creature));
                     floor.Boss = enemyController.getEnemy(Types.Enemy.Creature);
                     floor.Boss.Name = "The mighty unicorn Goldfish";
-                    floor.Boss.Life = floor.Boss.Life * 2;
+                    floor.Boss.setMaxLife(floor.Boss.Life * 2);
                     floor.Boss.Attack = (float)(floor.Boss.Attack * 1.5);
                     Floors.add(floor);
                     break;
@@ -50,7 +50,7 @@ public class Dungeon {
                     floor.PossibleEnemies.add(enemyController.getEnemy(Types.Enemy.Goblinoid));
                     floor.Boss = enemyController.getEnemy(Types.Enemy.Humanoid);
                     floor.Boss.Name = "Arthur the forgotten King";
-                    floor.Boss.Life = floor.Boss.Life * 3;
+                    floor.Boss.setMaxLife(floor.Boss.Life * 3);
                     floor.Boss.Attack = (float)(floor.Boss.Attack * 1.5);
                     floor.Boss.Defense = floor.Boss.Defense * 2;
                     Floors.add(floor);
@@ -61,7 +61,7 @@ public class Dungeon {
                     floor.PossibleEnemies.add(enemyController.getEnemy(Types.Enemy.Goblinoid));
                     floor.Boss = enemyController.getEnemy(Types.Enemy.Goblinoid);
                     floor.Boss.Name = "Lucine the goblin princess";
-                    floor.Boss.Life = floor.Boss.Life * 3;
+                    floor.Boss.setMaxLife(floor.Boss.Life * 3);
                     floor.Boss.Attack = (float)(floor.Boss.Attack * 2.5);
                     Floors.add(floor);
                     break;
@@ -74,7 +74,7 @@ public class Dungeon {
                     floor.PossibleEnemies.add(enemyController.getEnemy(Types.Enemy.Creature));
                     floor.Boss = enemyController.getEnemy(Types.Enemy.Goblinoid);
                     floor.Boss.Name = "Crash the goblin King";
-                    floor.Boss.Life = floor.Boss.Life * 3;
+                    floor.Boss.setMaxLife(floor.Boss.Life * 3);
                     floor.Boss.Attack = (float)(floor.Boss.Attack * 2.8);
                     floor.Boss.Defense = (float)(floor.Boss.Defense * 2.3);
                     Floors.add(floor);

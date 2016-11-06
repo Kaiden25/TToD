@@ -20,4 +20,26 @@ public class Enemy extends Character{
     public void setType(Types.Enemy type) {
         Type = type;
     }
+
+    public Enemy cloneEnemy(){
+        Enemy returnValue = new Enemy();
+        returnValue.EvolvesTo = this.EvolvesTo;
+        returnValue.Name = this.Name;
+        returnValue.Life = this.Life;
+        returnValue.Weapon = this.Weapon;
+        returnValue.Type = this.Type;
+        returnValue.Armor = this.Armor;
+        returnValue.Attack = this.Attack;
+        returnValue.BlockChance = this.Attack;
+        returnValue.CritChance = this.CritChance;
+        returnValue.Defense = this.Defense;
+        returnValue.GEIL = this.GEIL;
+        returnValue.Initiative = this.Initiative;
+        returnValue.Items = this.Items;
+        returnValue.Inteligence = this.Inteligence;
+        returnValue.Luck = this.Luck;
+        returnValue.MaxItems = this.MaxItems;
+        returnValue.MaxLife = this.MaxLife;
+        return returnValue;
+    }
 }
