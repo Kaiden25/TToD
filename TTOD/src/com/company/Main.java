@@ -402,7 +402,10 @@ public class Main {
                 "Vincenz Ladner"
         });
         seperator();
-        writeline("This Project was developed for educational purposes at the Technical vocational school Zurich (TBZ).");
+        writeline(new String[] {
+                "This Project was developed for educational purposes",
+                "at the Technical vocational school Zurich (TBZ)."
+        });
         writeline("http://www.tbz.ch/");
         seperator();
         writeline("Press enter to exit...");
