@@ -53,4 +53,33 @@ public class CharacterTest {
         Assert.assertTrue(c.MaxLife == 42 && c.Life == 42);
     }
 
+    @Test
+    public void getName_canSetName(){
+        Character c = new Character();
+        c.Name = "testName";
+        Assert.assertTrue(c.Name.equals("testName"));
+    }
+
+    @Test
+    public void getLife_canSetLife(){
+        Character c = new Character();
+        int i = 42;
+        c.Life = i;
+        Assert.assertTrue(c.Life == i);
+    }
+
+    /*public float Life;
+    public float MaxLife;
+    public float Defense;
+    public float Attack;
+    public float Intelligence;
+    public float CritChance;
+    public float BlockChance;
+    public float Luck;
+    public int Initiative;
+    public int MaxItems;
+    public float GEIL;
+    public Item Armor;
+    public Item Weapon;
+    public ArrayList<Item> Items;*/
 }
