@@ -399,7 +399,12 @@ public class Main {
         writeline("Also a huge thank you to our beta testers:");
         seperator();
         writeline(new String[]{
-                "Vincenz Ladner"
+                "Vincenz Ladner",
+                "Sheryl Baumgärtner",
+                "Niklas van der Heide",
+                "Stefan Schuler",
+                "Fabiana Chatelin",
+                "Gian Z'Graggen"
         });
         seperator();
         writeline(new String[] {
