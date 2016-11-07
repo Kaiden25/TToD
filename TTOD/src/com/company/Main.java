@@ -399,7 +399,7 @@ public class Main {
         writeline("Also a huge thank you to our beta testers:");
         seperator();
         writeline(new String[]{
-                "Here could your name be"
+                "Vincenz Ladner"
         });
         seperator();
         writeline("This Project was developed for educational purposes at the Technical vocational school Zurich (TBZ).");
