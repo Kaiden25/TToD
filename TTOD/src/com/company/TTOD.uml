@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="580.1249999999999" y="853.5">com.company.Enemy</node>
+    <node x="544.8749999999999" y="288.0">com.company.Character</node>
+    <node x="408.7499999999999" y="2052.0">com.company.Main</node>
+    <node x="549.7499999999999" y="1839.0">com.company.Game</node>
+    <node x="623.662037037037" y="0.0">com.company.Item</node>
+    <node x="49.999999999999886" y="1670.0">com.company.Town</node>
+    <node x="805.1249999999999" y="832.0">com.company.Player</node>
+    <node x="741.4111111111109" y="1156.5">com.company.EnemyController</node>
+    <node x="1344.375" y="0.0">com.company.Types</node>
+    <node x="0.0" y="1369.0">com.company.Trader</node>
+    <node x="490.4111111111109" y="1380.0">com.company.Floor</node>
+    <node x="598.4999999999999" y="1670.0">com.company.Dungeon</node>
+    <node x="1083.875" y="509.5">com.company.ItemController</node>
+    <node x="256.4999999999999" y="1045.0">com.company.Combat</node>
+    <node x="185.9999999999999" y="432.0">com.company.CombatResult</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.Game" target="com.company.Town">
+      <point x="-43.19999999999999" y="-81.5" />
+      <point x="614.55" y="1809.0" />
+      <point x="238.2499999999999" y="1809.0" />
+      <point x="62.75" y="59.5" />
+    </edge>
+    <edge source="com.company.Dungeon" target="com.company.EnemyController">
+      <point x="79.0" y="-59.5" />
+      <point x="795.9999999999999" y="1645.0" />
+      <point x="835.9111111111109" y="1645.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.company.Combat" target="com.company.Enemy">
+      <point x="92.0" y="-137.0" />
+      <point x="532.4999999999999" y="1025.0" />
+      <point x="600.6249999999999" y="1025.0" />
+      <point x="-82.0" y="60.0" />
+    </edge>
+    <edge source="com.company.Main" target="com.company.Game">
+      <point x="124.5" y="-213.0" />
+      <point x="782.2499999999999" y="2027.0" />
+      <point x="711.7499999999999" y="2027.0" />
+      <point x="54.0" y="81.5" />
+    </edge>
+    <edge source="com.company.Floor" target="com.company.Combat">
+      <point x="-114.75" y="-114.5" />
+      <point x="528.6611111111109" y="1344.0" />
+      <point x="440.4999999999999" y="1344.0" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="com.company.Game" target="com.company.Dungeon">
+      <point x="43.200000000000045" y="-81.5" />
+      <point x="700.9499999999999" y="1809.0" />
+      <point x="776.2499999999999" y="1809.0" />
+      <point x="59.25" y="59.5" />
+    </edge>
+    <edge source="com.company.EnemyController" target="com.company.Enemy">
+      <point x="0.0" y="-25.5" />
+      <point x="835.9111111111109" y="1025.0" />
+      <point x="764.6249999999999" y="1025.0" />
+      <point x="82.0" y="60.0" />
+    </edge>
+    <edge source="com.company.Character" target="com.company.Item">
+      <point x="129.75" y="-247.0" />
+      <point x="934.1249999999999" y="268.0" />
+      <point x="786.412037037037" y="268.0" />
+      <point x="23.25" y="114.0" />
+    </edge>
+    <edge source="com.company.Town" target="com.company.Trader">
+      <point x="-62.75" y="-59.5" />
+      <point x="112.74999999999989" y="1645.0" />
+      <point x="87.75" y="1645.0" />
+      <point x="-87.75" y="125.5" />
+    </edge>
+    <edge source="com.company.Floor" target="com.company.Enemy">
+      <point x="38.25" y="-114.5" />
+      <point x="681.6611111111109" y="1344.0" />
+      <point x="645.9999999999999" y="1344.0" />
+      <point x="645.9999999999999" y="1025.0" />
+      <point x="682.6249999999999" y="1025.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.company.Enemy" target="com.company.Character">
+      <point x="0.0" y="-60.0" />
+      <point x="682.6249999999999" y="807.0" />
+      <point x="674.6249999999999" y="807.0" />
+      <point x="-129.75" y="247.0" />
+    </edge>
+    <edge source="com.company.CombatResult" target="com.company.Item">
+      <point x="0.0" y="-103.0" />
+      <point x="348.4999999999999" y="258.0" />
+      <point x="693.412037037037" y="258.0" />
+      <point x="-69.75" y="114.0" />
+    </edge>
+    <edge source="com.company.Trader" target="com.company.Item">
+      <point x="0.0" y="-125.5" />
+      <point x="175.5" y="248.0" />
+      <point x="646.912037037037" y="248.0" />
+      <point x="-116.25" y="114.0" />
+    </edge>
+    <edge source="com.company.ItemController" target="com.company.Item">
+      <point x="0.0" y="-25.5" />
+      <point x="1173.375" y="258.0" />
+      <point x="832.912037037037" y="258.0" />
+      <point x="69.75" y="114.0" />
+    </edge>
+    <edge source="com.company.Game" target="com.company.Item">
+      <point x="86.39999999999998" y="-81.5" />
+      <point x="744.1499999999999" y="1819.0" />
+      <point x="1273.375" y="1819.0" />
+      <point x="1273.375" y="248.0" />
+      <point x="879.412037037037" y="248.0" />
+      <point x="116.25" y="114.0" />
+    </edge>
+    <edge source="com.company.Dungeon" target="com.company.Floor">
+      <point x="0.0" y="-59.5" />
+      <point x="716.9999999999999" y="1645.0" />
+      <point x="719.9111111111109" y="1645.0" />
+      <point x="76.5" y="114.5" />
+    </edge>
+    <edge source="com.company.Combat" target="com.company.CombatResult">
+      <point x="-92.0" y="-137.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="com.company.Player" target="com.company.Character">
+      <point x="0.0" y="-81.5" />
+      <point x="926.1249999999999" y="807.0" />
+      <point x="934.1249999999999" y="807.0" />
+      <point x="129.75" y="247.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.35708566853482787" x="704.0" y="1239.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
