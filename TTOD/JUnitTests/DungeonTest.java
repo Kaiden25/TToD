@@ -1,3 +1,7 @@
+import com.company.Dungeon;
+import com.company.Floor;
+import com.company.Player;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,13 +11,20 @@ import static org.junit.Assert.*;
  */
 public class DungeonTest {
     @Test
-    public void generateDefaultFloors() throws Exception {
-
+    public void generateDefaultFloors() {
+        Dungeon dungeon = new Dungeon();
+        dungeon.generateDefaultFloors();
+        Assert.assertTrue(dungeon.Floors.size() == 8);
     }
 
     @Test
-    public void nextFloor() throws Exception {
-
+    public void nextFloor() {
+        Dungeon dungeon = new Dungeon();
+        dungeon.generateDefaultFloors();
+        Player.getOurInstance().FloorCount = 0;
+        Assert.assertEquals(dungeon.nextFloor(), dungeon.Floors.get(0));
+        Player.getOurInstance().FloorCount = 5;
+        Assert.assertEquals(dungeon.nextFloor(), dungeon.Floors.get(5));
     }
 
 }
