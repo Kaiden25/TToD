@@ -6,6 +6,8 @@ package com.company;
 public class ItemController {
   public static Item getItem(Types.ItemType type) {
     Item itemToDefine = new Item();
+    itemToDefine.Type = type;
+
     switch (type) {
       case Armor:
         itemToDefine.Name = "Iron Armor";
