@@ -404,7 +404,10 @@ public class Main {
                 "Niklas van der Heide",
                 "Stefan Schuler",
                 "Fabiana Chatelin",
-                "Gian Z'Graggen"
+                "Gian Z'Graggen",
+                "Gilles Corsini",
+                "Rene Chatelin",
+                "Roman Stettler"
         });
         seperator();
         writeline(new String[] {
