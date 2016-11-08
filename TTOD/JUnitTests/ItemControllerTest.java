@@ -1,3 +1,7 @@
+import com.company.Item;
+import com.company.ItemController;
+import com.company.Types;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,8 +11,11 @@ import static org.junit.Assert.*;
  */
 public class ItemControllerTest {
     @Test
-    public void getItem() throws Exception {
-
+    public void getItem() {
+        for (Types.ItemType itemType:Types.ItemType.values() ) {
+            Item item = ItemController.getItem(itemType);
+            Assert.assertTrue(item.Type == itemType);
+            Assert.assertTrue(item.Name != "");
+        }
     }
-
 }
