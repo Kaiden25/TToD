@@ -1,3 +1,7 @@
+import com.company.Enemy;
+import com.company.EnemyController;
+import com.company.Types;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,8 +11,12 @@ import static org.junit.Assert.*;
  */
 public class EnemyControllerTest {
     @Test
-    public void getEnemy() throws Exception {
-
+    public void getEnemy() {
+        for (Types.Enemy e: Types.Enemy.values()) {
+            Enemy enemy = new EnemyController().getEnemy(e);
+            Assert.assertTrue(enemy.Name != new Enemy().Name);
+            Assert.assertEquals(enemy.Type, e);
+        }
     }
 
 }

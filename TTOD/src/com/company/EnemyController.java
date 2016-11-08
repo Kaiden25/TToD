@@ -5,7 +5,7 @@ package com.company;
  */
 @java.lang.SuppressWarnings("ALL")
 public class EnemyController {
-    Enemy getEnemy(Types.Enemy type){
+    public Enemy getEnemy(Types.Enemy type){
         Enemy enemyToDefine = new Enemy();
         switch (type){
             case Creature:
@@ -21,6 +21,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 25;
                 enemyToDefine.MaxItems = 5;
                 enemyToDefine.GEIL = 100;
+                enemyToDefine.Type = Types.Enemy.Creature;
                 break;
             case Humanoid:
                 enemyToDefine.Name = "Bandit";
@@ -35,6 +36,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 15;
                 enemyToDefine.MaxItems = 5;
                 enemyToDefine.GEIL = 100;
+                enemyToDefine.Type = Types.Enemy.Humanoid;
                 break;
             case Goblinoid:
                 enemyToDefine.Name = "Goblin";
@@ -49,6 +51,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 15;
                 enemyToDefine.MaxItems = 5;
                 enemyToDefine.GEIL = 100;
+                enemyToDefine.Type = Types.Enemy.Goblinoid;
                 break;
             case Shepard:
                 enemyToDefine.Name = "Shepard";
@@ -63,6 +66,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 15;
                 enemyToDefine.MaxItems = 5;
                 enemyToDefine.GEIL = 33;
+                enemyToDefine.Type = Types.Enemy.Shepard;
                 break;
             case Dragon:
                 enemyToDefine.Name = "Dragon";
@@ -78,6 +82,7 @@ public class EnemyController {
                 enemyToDefine.MaxItems = 10;
                 enemyToDefine.GEIL = 500;
                 enemyToDefine.EvolvesTo = getEnemy(Types.Enemy.Undead);
+                enemyToDefine.Type = Types.Enemy.Dragon;
                 break;
             case Undead:
                 enemyToDefine.Name = "Dracolich";
@@ -92,6 +97,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 35;
                 enemyToDefine.MaxItems = 15;
                 enemyToDefine.GEIL = 1000;
+                enemyToDefine.Type = Types.Enemy.Undead;
                 break;
             case Lich:
                 enemyToDefine.Name = "Goran the Lich";
@@ -106,6 +112,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 40;
                 enemyToDefine.MaxItems = 20;
                 enemyToDefine.GEIL = 2000;
+                enemyToDefine.Type = Types.Enemy.Lich;
                 break;
             default:
                 enemyToDefine.Name = "Steve";
@@ -120,6 +127,7 @@ public class EnemyController {
                 enemyToDefine.Initiative = 1;
                 enemyToDefine.MaxItems = 1;
                 enemyToDefine.GEIL = 1;
+                enemyToDefine.Type = type;
                 break;
         }
         return enemyToDefine;
