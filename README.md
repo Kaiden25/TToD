@@ -1,4 +1,6 @@
 # TToD
+##Download
+[The Tower of Doom Download (Current Version)](https://github.com/Kaiden25/TToD/wiki/Download)
 ##The Concept of the Game
 The player enters the fantasy world of the Tower of Doom, where he has to fight his way up
 an **8 floor dungeon** called "The Tower of Doom". 
