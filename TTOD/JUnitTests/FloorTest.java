@@ -14,7 +14,7 @@ public class FloorTest {
         Floor floor = new Floor();
         Enemy e = new Enemy();
         floor.PossibleEnemies.add(e);
-        Assert.assertTrue(floor.nextCombat().CurrentEnemy == e);
+        Assert.assertEquals(floor.nextCombat().CurrentEnemy.Name, e.Name);
     }
 
     @Test
