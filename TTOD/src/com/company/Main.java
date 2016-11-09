@@ -405,6 +405,7 @@ public class Main {
                 "Stefan Schuler",
                 "Fabiana Chatelin",
                 "Gian Z'Graggen",
+                "Crystal Baumgärtner",
                 "Gilles Corsini",
                 "Rene Chatelin",
                 "Roman Stettler"
