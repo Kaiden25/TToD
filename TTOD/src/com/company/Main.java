@@ -44,12 +44,14 @@ public class Main {
         goToTown();
     }
 
+    /** Output of 1 to n lines  */
     private static void writeline(String[] textlines){
         for (String s: textlines) {
             writeline(s);
         }
     }
 
+    /** Output of 1 line */
     private static void writeline(String text){
         System.out.println("  " + text);
     }
@@ -58,6 +60,7 @@ public class Main {
         System.out.println("[]---------------------------------------------------------------------[]");
     }
 
+    /** Read and set player name */
     private static void namePlayer(){
         writeline("Please enter your name: ");
         boolean playerNameIsSet = false;
@@ -73,6 +76,7 @@ public class Main {
         }
     }
 
+    /** Read line and check for cheatcode */
     private static String getInput(){
         boolean gettingInput = true;
         String returnValue = "";
@@ -89,6 +93,7 @@ public class Main {
             return "";
     }
 
+    /** Ask yes/no question and return the answer */
     private static boolean askQuestion(String question) {
         boolean returnValue = false;
         writeline(question);
@@ -116,6 +121,7 @@ public class Main {
         return returnValue;
     }
 
+    /** Ask question with 4 answers and get correct answer. Returns answer. */
     private static int askQuestion(String question, String answer1, String answer2, String answer3, String answer4){
         int returnValue = 0;
         writeline(question);
@@ -154,6 +160,7 @@ public class Main {
         return returnValue;
     }
 
+    /** Read and return number between 1 and maxCount */
     private static int getNumber(int maxCount){
         boolean inputIsCorrect = false;
         int result = 0;
@@ -172,6 +179,9 @@ public class Main {
         return result;
     }
 
+    /** Lets player go to town. Lists all options available in town.
+     * Reads next action chosen by player.
+     * Equips new armor to player. */
     private static void goToTown(){
         writeline(Player.getOurInstance().Name + " entered Paladia");
         seperator();
@@ -237,6 +247,7 @@ public class Main {
         }
     }
 
+    /** Player enters first/next floor. Checks how many battles are left. */
     private static void enterDungeon(){
         Floor currentFloor = CurrentGame.Dungeon.nextFloor();
         boolean playerEscaped = false;
@@ -283,6 +294,9 @@ public class Main {
         goToTown();
     }
 
+    /** Simulates the combat. Checks for next player action.
+     *  Checks for life of player and opponent.
+     *  Activate potions.*/
     private static void doCombat(Combat combat){
         writeline(combat.CurrentEnemy.Name + " wants to fight you!");
         boolean playerEscaped = false;
@@ -349,6 +363,7 @@ public class Main {
         }
     }
 
+    /** Output of one round of combat */
     private static void displayCombatResult(CombatResult result, String enemyName){
         writeline(new String[]{
                 (result.EnemyHadFirstHit ? enemyName + " had first hit" : Player.getOurInstance().Name + " had first hit"),
@@ -356,6 +371,7 @@ public class Main {
         });
     }
 
+    /** Get combat action as readable string. */
     private static String displayCombatActionResult(Types.CombatActionResult result){
         if(result == null) {
             return "died in combat";
@@ -382,6 +398,7 @@ public class Main {
         }
     }
 
+    /** Output of all credits. */
     private static void rollCredits(){
         writeline(new String[]{
                 "Thank you for playing our game!",
@@ -422,6 +439,8 @@ public class Main {
         System.exit(0);
     }
 
+    /** Get a trader and handle sells and buys.
+     * Checks for next player action and if enough GEIL is available. */
     private static void doTrading(){
         if(askQuestion("Do you wanna trade with a random trader?")){
             seperator();
@@ -571,6 +590,7 @@ public class Main {
         goToTown();
     }
 
+    /** Activate a cheat code. */
     private static boolean doCheat(String cheatcode){
         boolean wasCheat = false;
         if(cheatcode != null){
