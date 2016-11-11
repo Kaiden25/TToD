@@ -2,6 +2,7 @@ package com.company;
 
 /**
  * Created by Michael on 28.10.2016.
+ * This class is used for all types or states something in this game can have.
  */
 public class Types {
     public enum Trader {

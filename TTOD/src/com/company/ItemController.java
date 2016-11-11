@@ -6,6 +6,8 @@ package com.company;
 public class ItemController {
   public static Item getItem(Types.ItemType type) {
     Item itemToDefine = new Item();
+    itemToDefine.Type = type;
+
     switch (type) {
       case Armor:
         itemToDefine.Name = "Iron Armor";
@@ -13,6 +15,7 @@ public class ItemController {
         itemToDefine.MaxCount = 1;
         itemToDefine.Value = 175;
         itemToDefine.IsCombatItem = true;
+        itemToDefine.Type = type;
         break;
       case Weapon:
         itemToDefine.Name = "Warblade";
@@ -20,6 +23,7 @@ public class ItemController {
         itemToDefine.MaxCount = 1;
         itemToDefine.Value = 175;
         itemToDefine.IsCombatItem = true;
+        itemToDefine.Type = type;
         break;
       case Potion:
         itemToDefine.Name = "Health Potion";
@@ -27,12 +31,14 @@ public class ItemController {
         itemToDefine.MaxCount = 3;
         itemToDefine.Value = 175;
         itemToDefine.IsCombatItem = true;
+        itemToDefine.Type = type;
         break;
       case Scrap:
         itemToDefine.Name = "Scraps";
         itemToDefine.MaxCount = 99;
         itemToDefine.Value = 5;
         itemToDefine.IsCombatItem = false;
+        itemToDefine.Type = type;
         break;
       default:
         getItem(Types.ItemType.Scrap);

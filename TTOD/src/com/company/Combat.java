@@ -27,7 +27,7 @@ public class Combat {
         if(Player.getOurInstance().Life > 0 && result.EnemyAction != Types.CombatActionResult.Escaped){
             result.PlayerAction = Types.CombatActionResult.Attacked;
             //Calculates Damage
-            result.EnemyLifeDifference = CurrentEnemy.Defense - (Player.getOurInstance().Attack + Player.getOurInstance().Weapon.Attack);
+            result.EnemyLifeDifference = CurrentEnemy.Defense - (Player.getOurInstance().Attack + (Player.getOurInstance().Weapon != null ? Player.getOurInstance().Weapon.Attack:(float)0));
             if(result.EnemyHadFirstHit && result.EnemyAction == Types.CombatActionResult.Defended)
                 result.EnemyLifeDifference = result.EnemyLifeDifference - CurrentEnemy.Defense / 100 * result.EnemyLifeDifference;
             //Deals Damage to enemy
@@ -143,9 +143,9 @@ public class Combat {
     private CombatResult enemyAttacks(CombatResult result){
         result.EnemyAction = Types.CombatActionResult.Attacked;
         //Calculates Damage
-        result.PlayerLifeDifference = CurrentEnemy.Attack - (Player.getOurInstance().Defense + Player.getOurInstance().Armor.Defense);
+        result.PlayerLifeDifference = CurrentEnemy.Attack - (Player.getOurInstance().Defense + (Player.getOurInstance().Armor != null ? Player.getOurInstance().Armor.Defense : 0));
         if(!result.EnemyHadFirstHit && result.PlayerAction == Types.CombatActionResult.Defended)
-            result.PlayerLifeDifference = result.PlayerLifeDifference - (Player.getOurInstance().Defense + Player.getOurInstance().Armor.Defense)/ 100 * result.PlayerLifeDifference;
+            result.PlayerLifeDifference = result.PlayerLifeDifference - (Player.getOurInstance().Defense + (Player.getOurInstance().Armor != null ? Player.getOurInstance().Armor.Defense : 0))/ 100 * result.PlayerLifeDifference;
         //Deals Damage to enemy
         if (result.PlayerLifeDifference <= 0)
             Player.getOurInstance().Life = Player.getOurInstance().Life + result.PlayerLifeDifference;
